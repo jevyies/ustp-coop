@@ -1,0 +1,51 @@
+<div class="min-height-100vh bg-light-orange">
+    <div class="position-fixed" style="top: 50px;left: 50px;">
+        <a ui-sref="main"><img src="assets/images/coop-logo.png" alt="Coop Logo" class="sub-logo"></a>
+    </div>
+    <div class="d-flex align-items-center h-100vh">
+        <div class="w-50 text-center">
+            <h1 class="m-0 mr-2 text-secondary text-bolder"><b><span class="font-size-80">Join us </span><span class="font-size-120">now.</span></b></h1>
+        </div>
+        <div class="w-50 p-5">
+            <form>
+                <div class="bg-brown p-3">
+                    <div class="mb-2">
+                        <label for="name">Name:</label>
+                        <div class="d-flex">
+                            <span class="space-5"></span>
+                            <input type="text" class="form-control form-control-lg ml-5">
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label for="name">Email:</label>
+                        <div class="d-flex">
+                            <span class="space-5"></span>
+                            <input type="email" class="form-control form-control-lg ml-5">
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label for="name">Password:</label>
+                        <div class="d-flex">
+                            <span class="space-5"></span>
+                            <input type="password" class="form-control form-control-lg ml-5">
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <label for="name">Confirm Password:</label>
+                        <div class="d-flex">
+                            <span class="space-5"></span>
+                            <input type="password" class="form-control form-control-lg ml-5">
+                        </div>
+                    </div>
+                    <div class="text-center mb-2">
+                        <button type="button" class="btn-brown font-size-36">REGISTER</button>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" ui-sref="login" class="btn-clear-link font-size-36">Already registered?</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div ng-include="'ngapp/common/layouts/footer.html'" include-replace></div>
+</div>

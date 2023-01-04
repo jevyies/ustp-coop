@@ -1,12 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Main Page
-</body>
-</html>
+<div class="min-height-100vh w-100vw">
+    <div class="bg-image position-fixed full-page"></div>
+    <div class="container-fluid">
+        <div class="main-banner mt-1">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <img src="assets/images/coop-logo.png" alt="Coop Logo" class="main-logo">
+                </div>
+                <div class="d-flex justify-content-center flex-column w-100">
+                    <p class="main-title">USTP CDO Employee Multi-Purpose</p>
+                    <p class="main-title">Cooperative kicks of Web Portal</p>
+                </div>
+                <div></div>
+            </div>
+        </div>
+        <div class="main-menu-button">
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-clear">Be a member</button>
+                <button type="button" ui-sref="login" class="btn btn-clear">Login</button>
+                <button type="button" class="btn btn-clear">Contact Us</button>
+            </div>
+        </div>
+        <div class="main-dashboard">
+            <div class="row">
+                <div class="col-md-8">
+                </div>
+                <div class="col-md-4">
+                    <div class="row mb-2">
+                        <div class="col-md-6">
+                            <img src="assets/images/more-image.png" style="max-width: 300px;">
+                        </div>
+                        <div class="col-md-6">
+                            <img src="assets/images/more-image.png" style="max-width: 300px;">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="assets/images/more-image.png" style="max-width: 300px;">
+                        </div>
+                        <div class="col-md-6">
+                            <img src="assets/images/more-image.png" style="max-width: 300px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-include="'ngapp/common/layouts/footer.html'" include-replace></div>
+</div>

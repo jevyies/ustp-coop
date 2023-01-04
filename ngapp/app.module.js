@@ -1,6 +1,9 @@
 const APIURL = '';
 const APPURL = 'ngapp/';
 const VERSION = '1.0.0';
+const COMURL = APPURL + 'common/';
+const REGURL = APPURL + 'registration/';
+const LOGURL = APPURL + 'login/';
 // Default colors
 
 angular

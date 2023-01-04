@@ -1,0 +1,50 @@
+<div class="navbar-default sidebar" role="navigation">
+	<div class="sidebar-nav">
+		<ul class="nav" id="side-menu">
+			<li>
+				<a>
+					<img src="assets/images/bulua.png">
+				</a>
+				<div class="text-center since">
+					<span>Since 1941</span>
+				</div>
+			</li>
+			<!-- <li ui-sref-active="selected">
+				<a ui-sref="app.main">
+					<i>
+						<span class="fa fa-th-large"></span> &nbsp; Dashboard</i>
+				</a>
+			</li> -->
+			<li ui-sref-active="selected" ng-if="vm.level === 'Administrator'">
+				<a ui-sref="app.administrative">
+					<i>
+						<span class="fa fa-user"></span> &nbsp; Administrative</i>
+				</a>
+			</li>
+			<li ui-sref-active="selected">
+				<a ui-sref="app.students">
+					<i>
+						<span class="fa fa-street-view"></span> &nbsp; My Students</i>
+				</a>
+			</li>
+			<li ui-sref-active="selected" ng-if="vm.level === 'Administrator'">
+				<a ui-sref="app.history">
+					<i>
+						<span class="fa fa-street-view"></span> &nbsp; Student Track Info</i>
+				</a>
+			</li>
+			<li ui-sref-active="selected">
+				<a ui-sref="app.reports">
+					<i>
+						<span class="fa fa-street-view"></span> &nbsp; Reports</i>
+				</a>
+			</li>
+			<li ui-sref-active="selected">
+				<a ui-sref="app.form">
+					<i>
+						<span class="fa fa-street-view"></span> &nbsp; Form 137 Generation</i>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

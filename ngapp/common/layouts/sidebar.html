@@ -1,50 +1,53 @@
-<div class="navbar-default sidebar" role="navigation">
+<div class="navbar-default sidebar h-100" role="navigation">
 	<div class="sidebar-nav">
-		<ul class="nav" id="side-menu">
-			<li>
-				<a>
-					<img src="assets/images/bulua.png">
-				</a>
-				<div class="text-center since">
-					<span>Since 1941</span>
-				</div>
-			</li>
-			<!-- <li ui-sref-active="selected">
+		<ul class="nav w-100 pl-5" id="side-menu">
+			<li ui-sref-active="selected">
 				<a ui-sref="app.main">
-					<i>
-						<span class="fa fa-th-large"></span> &nbsp; Dashboard</i>
-				</a>
-			</li> -->
-			<li ui-sref-active="selected" ng-if="vm.level === 'Administrator'">
-				<a ui-sref="app.administrative">
-					<i>
-						<span class="fa fa-user"></span> &nbsp; Administrative</i>
+						<i class="fa-solid fa-bars"></i> &nbsp; Dashboard
 				</a>
 			</li>
 			<li ui-sref-active="selected">
-				<a ui-sref="app.students">
-					<i>
-						<span class="fa fa-street-view"></span> &nbsp; My Students</i>
-				</a>
-			</li>
-			<li ui-sref-active="selected" ng-if="vm.level === 'Administrator'">
-				<a ui-sref="app.history">
-					<i>
-						<span class="fa fa-street-view"></span> &nbsp; Student Track Info</i>
+				<a ui-sref="app.clients">
+						<i class="fa-sharp fa-solid fa-users-between-lines"></i> &nbsp; Clients
 				</a>
 			</li>
 			<li ui-sref-active="selected">
-				<a ui-sref="app.reports">
-					<i>
-						<span class="fa fa-street-view"></span> &nbsp; Reports</i>
+				<a ui-sref="app.applications">
+						<i class="fa-solid fa-layer-group"></i> &nbsp; Applications
 				</a>
 			</li>
 			<li ui-sref-active="selected">
-				<a ui-sref="app.form">
-					<i>
-						<span class="fa fa-street-view"></span> &nbsp; Form 137 Generation</i>
+				<a ui-sref="app.transactions">
+						<i class="fa-solid fa-arrow-right-arrow-left"></i> &nbsp; Transactions
 				</a>
 			</li>
 		</ul>
 	</div>
+</div>
+<div class="sidebar-mobile position-fixed h-100vh">
+	<div class="sidebar-nav bg-grey">
+		<ul class="nav w-100 pl-5" id="side-menu">
+			<li ui-sref-active="selected">
+				<a ui-sref="app.main">
+						<i class="fa-solid fa-bars"></i> &nbsp; Dashboard
+				</a>
+			</li>
+			<li ui-sref-active="selected">
+				<a ui-sref="app.clients">
+						<i class="fa-sharp fa-solid fa-users-between-lines"></i> &nbsp; Clients
+				</a>
+			</li>
+			<li ui-sref-active="selected">
+				<a ui-sref="app.applications">
+						<i class="fa-solid fa-layer-group"></i> &nbsp; Applications
+				</a>
+			</li>
+			<li ui-sref-active="selected">
+				<a ui-sref="app.transactions">
+						<i class="fa-solid fa-arrow-right-arrow-left"></i> &nbsp; Transactions
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="sidenav-outside" ng-click="vm.hideSideBar()"></div>
 </div>

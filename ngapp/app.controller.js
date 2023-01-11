@@ -6,32 +6,21 @@ function AppCtrl($scope, $ocLazyLoad, $injector, $state) {
 	var vm = this;
 	vm.masterfile = false;
 	vm.userName = '';
-	vm.showSide = true;
 	$ocLazyLoad.load([APPURL + 'app.service.js?v=' + VERSION]).then(function(d) {
 		AppSvc = $injector.get('AppSvc');
-		vm.getUserCredentials();
 	});
-	vm.getUserCredentials = function() {
-		AppSvc.get().then(function(response) {
-			if (response.record) {
-				vm.userName = response.record.user;
-				vm.level = response.record.level;
-				vm.userCredentials = response.record;
-			} else {
-				console.log('error');
-			}
-		});
-	};
 	vm.openSideMenu = function() {
 		var body = angular.element(document.querySelector('body'));
-		if (vm.showSide) {
-			body.addClass('sidebar-mobile-show sidebar-hidden');
-			vm.showSide = false;
+		if (body.hasClass('sidebar-mobile-show')) {
+			body.removeClass('sidebar-mobile-show');
 		} else {
-			body.removeClass('sidebar-mobile-show sidebar-hidden');
-			vm.showSide = true;
+			body.addClass('sidebar-mobile-show');
 		}
 	};
+	vm.hideSideBar = function(){
+		var body = angular.element(document.querySelector('body'));
+		body.removeClass('sidebar-mobile-show');
+	}
 	vm.changePassword = function(){
 		var options = {
 			data: vm.userCredentials,
@@ -50,25 +39,8 @@ function AppCtrl($scope, $ocLazyLoad, $injector, $state) {
 			}
 		});
 	}
-	vm.userPane = function(){
-		var options = {
-			data: vm.userCredentials,
-			templateUrl: COMURL + 'user_details/view.html?v=' + VERSION,
-			controllerName: 'UserDetailsCtrl',
-			viewSize: 'sm',
-			animation: true,
-			filesToLoad: [
-				COMURL + 'user_details/view.html?v=' + VERSION,
-				COMURL + 'user_details/controller.js?v=' + VERSION,
-			],
-		};
-		AppSvc.modal(options).then(function(data) {
-			if (data) {
-				vm.logout();
-			}
-		});
-	}
 	vm.logout = function() {
-		window.location.href = PROJURL + '/login/logout';
+		localStorage.removeItem('credentials');
+		$state.go('login');
 	};
 }

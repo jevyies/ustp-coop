@@ -16,6 +16,7 @@ function LoginCtrl($scope, $ocLazyLoad, $injector, $state) {
         vm.loginCredentials.as = type;
     }
     vm.closeLogin = () => {
+        console.log('yes');
         vm.loginInterface = false;
     }
 

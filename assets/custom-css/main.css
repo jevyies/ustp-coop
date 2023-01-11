@@ -137,6 +137,10 @@ body {
     top: 50px;
     left: 50px;
 }
+.t10px-r10px{
+    top: 10px;
+    right: 10px;
+}
 .min-height-100vh{
     min-height: 100vh;
 }
@@ -582,4 +586,7 @@ form label{
 }
 .sidebar-mobile{
     display: none;
+}
+.position-relative{
+    position: relative;
 }

@@ -159,4 +159,58 @@ const ROUTES = [
 			},
 		}
 	},
+	{
+		'member.loan-application': {
+			url: '/loan-application',
+			templateUrl: APPURL + 'members/loan/view.html?v=' + VERSION,
+			requireLogin: true,
+			loginAs: 'member',
+			resolve: {
+				loadMyCtrl: [
+					'$ocLazyLoad',
+					function ($ocLazyLoad) {
+						return $ocLazyLoad.load({
+							files: [APPURL + 'members/loan/controller.js?v=' + VERSION],
+						});
+					},
+				],
+			},
+		}
+	},
+	{
+		'member.deposit': {
+			url: '/member-deposit',
+			templateUrl: APPURL + 'members/deposit/view.html?v=' + VERSION,
+			requireLogin: true,
+			loginAs: 'member',
+			resolve: {
+				loadMyCtrl: [
+					'$ocLazyLoad',
+					function ($ocLazyLoad) {
+						return $ocLazyLoad.load({
+							files: [APPURL + 'members/deposit/controller.js?v=' + VERSION],
+						});
+					},
+				],
+			},
+		}
+	},
+	{
+		'member.transaction': {
+			url: '/member-transaction',
+			templateUrl: APPURL + 'members/transaction/view.html?v=' + VERSION,
+			requireLogin: true,
+			loginAs: 'member',
+			resolve: {
+				loadMyCtrl: [
+					'$ocLazyLoad',
+					function ($ocLazyLoad) {
+						return $ocLazyLoad.load({
+							files: [APPURL + 'members/transaction/controller.js?v=' + VERSION],
+						});
+					},
+				],
+			},
+		}
+	},
 ];

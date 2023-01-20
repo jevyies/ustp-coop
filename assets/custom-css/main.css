@@ -29,6 +29,12 @@ body {
     .w-50{
         width: 100% !important;
     }
+    .w-40{
+        width: 100% !important;
+    }
+    .w-60{
+        width: 100% !important;
+    }
     .space-5{
         width: 1rem !important;
     }
@@ -111,6 +117,9 @@ body {
     .main{
         width: 100% !important;
     }
+    .main-member{
+        width: 100% !important;
+    }
     .sidebar-mobile{
         display: flex !important;
         left: -100vw;
@@ -132,6 +141,9 @@ body {
     h2{
         font-size: 2rem !important;
     }
+    .blue-content{
+        height: unset !important;
+    }
 }
 .t50px-l50px{
     top: 50px;
@@ -149,6 +161,12 @@ body {
 }
 .w-50{
     width: 50%;
+}
+.w-40{
+    width: 40%;
+}
+.w-60{
+    width: 60%;
 }
 .w-25{
     width: 25%;
@@ -427,6 +445,9 @@ body {
 .font-size-28{
     font-size: 28px;
 }
+.font-size-58{
+    font-size: 58px;
+}
 .font-size-100{
     font-size: 100px;
 }
@@ -581,6 +602,11 @@ form label{
     width: calc(100% - 350px);
     overflow: auto;
 }
+.main-member{
+    width: calc(100% - 350px);
+    overflow: auto;
+    margin: 0 auto;
+}
 .nowrap{
     white-space: nowrap;
 }
@@ -589,4 +615,37 @@ form label{
 }
 .position-relative{
     position: relative;
+}
+.btn-blue{
+    font-size: 25px;
+    color: #fff;
+    background-color: #21192C;
+}
+.btn-blue:hover, .btn-blue:focus{
+    color: #D9D9D9;
+}
+.bg-blue{
+    background-color: #21192C;
+    overflow-y: auto;
+}
+.blue-content{
+    height: calc(70vh - 250px);
+}
+.text-white{
+    color: #fff;
+}
+.d-block{
+    display: block;
+}
+.loan-feed{
+    width: 250px;
+    height: 40px;
+    background: rgba(159, 159, 165, 0.6);
+    border-radius: 20px;
+}
+.loan-feed p{
+    font-weight: 700;
+    font-size: 17px;
+    margin: 0;
+    color: #fff;
 }

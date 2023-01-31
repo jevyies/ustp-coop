@@ -196,9 +196,9 @@ const ROUTES = [
 		}
 	},
 	{
-		'member.transaction': {
-			url: '/member-transaction',
-			templateUrl: APPURL + 'members/transaction/view.html?v=' + VERSION,
+		'member.withdrawal': {
+			url: '/member-withdrawal',
+			templateUrl: APPURL + 'members/withdrawal/view.html?v=' + VERSION,
 			requireLogin: true,
 			loginAs: 'member',
 			resolve: {
@@ -206,7 +206,7 @@ const ROUTES = [
 					'$ocLazyLoad',
 					function ($ocLazyLoad) {
 						return $ocLazyLoad.load({
-							files: [APPURL + 'members/transaction/controller.js?v=' + VERSION],
+							files: [APPURL + 'members/withdrawal/controller.js?v=' + VERSION],
 						});
 					},
 				],

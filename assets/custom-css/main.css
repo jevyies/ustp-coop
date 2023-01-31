@@ -144,6 +144,25 @@ body {
     .blue-content{
         height: unset !important;
     }
+    .retain-row{
+        flex-direction: row !important;
+    }
+    .semi-modal-body{
+        width: 100% !important;
+        margin-top: 0 !important;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    #video1{
+        width: 100%;
+    }
+    .mobile-full-width{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .mobile-text-center{
+        text-align: center !important;
+    }
 }
 .t50px-l50px{
     top: 50px;
@@ -529,6 +548,7 @@ footer{
 }
 form label{
     font-size: 36px;
+    margin-bottom: 0;
 }
 .bg-brownie{
     background-color: #A2844E;
@@ -561,6 +581,9 @@ form label{
     right: 0;
 }
 .text-black{
+    color: #000;
+}
+.text-black:hover, .text-black:focus, .text-black:active{
     color: #000;
 }
 .gap-20{
@@ -621,8 +644,17 @@ form label{
     color: #fff;
     background-color: #21192C;
 }
+.btn-blue.selected{
+    font-size: 25px;
+    color: #000;
+    background-color: #D9D9D9;
+    font-weight: bolder;
+}
 .btn-blue:hover, .btn-blue:focus{
     color: #D9D9D9;
+}
+.btn-blue.selected:hover, .btn-blue.selected:focus{
+    color: #000;
 }
 .bg-blue{
     background-color: #21192C;
@@ -648,4 +680,140 @@ form label{
     font-size: 17px;
     margin: 0;
     color: #fff;
+}
+.file-upload {
+    display: block;
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+}
+
+.file-upload .file-select {
+    display: block;
+    border: 2px solid #dce4ec;
+    color: #34495e;
+    cursor: pointer;
+    height: 45px;
+    line-height: 45px;
+    text-align: left;
+    background: #ffffff;
+    overflow: hidden;
+    position: relative;
+    border-radius: 25px;
+}
+
+.file-upload .file-select .file-select-button {
+    background: #dce4ec;
+    padding: 0 10px;
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+}
+
+.file-upload .file-select .file-select-name {
+    line-height: 35px;
+    display: inline-block;
+    padding: 0 10px;
+}
+
+.file-upload .file-select:hover {
+    border-color: #34495e;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}
+
+.file-upload .file-select:hover .file-select-button {
+    background: #34495e;
+    color: #ffffff;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}
+
+.file-upload.active .file-select {
+    border-color: #3fa46a;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}
+
+.file-upload.active .file-select .file-select-button {
+    background: #3fa46a;
+    color: #ffffff;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}
+
+.file-upload .file-select input[type='file'] {
+    z-index: 100;
+    cursor: pointer;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.file-upload .file-select.file-select-disabled {
+    opacity: 0.65;
+}
+
+.file-upload .file-select.file-select-disabled:hover {
+    cursor: default;
+    display: block;
+    border: 2px solid #dce4ec;
+    color: #34495e;
+    cursor: pointer;
+    height: 35px;
+    line-height: 35px;
+    margin-top: 5px;
+    text-align: left;
+    background: #ffffff;
+    overflow: hidden;
+    position: relative;
+}
+
+.file-upload .file-select.file-select-disabled:hover .file-select-button {
+    background: #dce4ec;
+    color: #666666;
+    padding: 0 10px;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+}
+
+.file-upload .file-select.file-select-disabled:hover .file-select-name {
+    line-height: 20px;
+    display: inline-block;
+    padding: 0 10px;
+}
+.semi-modal{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+.semi-modal-body{
+    margin-top: 2%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: #fff;
+    padding: 20px;
+    width: calc(100% - 50px);
+}
+.semi-modal-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

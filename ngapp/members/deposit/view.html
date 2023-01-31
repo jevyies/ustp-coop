@@ -1,20 +1,43 @@
-<div class="bg-brownie full-main-mobile" style="height: 10px;"></div>
-<div class="bg-light px-3 py-2">
-    <h2 class="font-weight-bolder">USTP CDO Multi-Cooperative Web Portal</h2>
-    <p class="font-weight-bolder mt-3 font-size-20">Fill up the form</p>
-    <div class="bg-blue blue-content">
-        <div class="d-flex align-items-center h-100">
-            <div class="col-md-4 text-white w-40">
-                <p class="text-center font-weight-bolder"><span class="d-block font-size-58">Deposit</span><span class="font-size-120">Slip</span></p>
-            </div>
-            <div class="w-60 p-3">
-                <div class="bg-brownie p-1">
-                    <div class="mb-2">
-                        <label for="name">Name:</label>
-                        <div class="d-flex">
-                            <input type="email" class="form-control form-control-lg" ng-model="vm.loginCredentials.email">
+<div ng-controller="DepositCtrl as vm">
+    <div class="bg-brownie full-main-mobile" style="height: 10px;"></div>
+    <div class="bg-light px-3 py-2">
+        <h2 class="font-weight-bolder">USTP CDO Multi-Cooperative Web Portal</h2>
+        <p class="font-weight-bolder mt-3 font-size-20">Fill up the form</p>
+        <div class="bg-blue blue-content">
+            <div class="d-flex align-items-center h-100">
+                <div class="col-md-4 text-white w-40">
+                    <p class="text-center font-weight-bolder"><span class="d-block font-size-58">Deposit</span><span class="font-size-120">Slip</span></p>
+                </div>
+                <div class="w-60 p-3">
+                    <form>
+                        <div class="bg-brownie p-1">
+                            <div class="mb-2">
+                                <label for="name">Total Amount:</label>
+                                <div class="d-flex">
+                                    <input type="text" class="form-control form-control-lg" only-numbers>
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <label for="name">Receipt Attachment:</label>
+                                <div class="file-upload" ng-class="{active: vm.attachment.name}">
+                                    <div class="file-select">
+                                        <div class="file-select-button">Select File</div>
+                                        <div class="file-select-name" ng-if="vm.attachment.name">
+                                            {{ vm.attachment.name }}
+                                        </div>
+                                        <div class="file-select-name" ng-if="!vm.attachment.name">
+                                            No file choosen...
+                                        </div>
+                                        <input id="file-input" type="file" file-model="vm.attachment"
+                                            custom-on-change handler="vm.checkAttachment()" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-2 text-center">
+                                <button type="submit" class="btn-blue font-size-36 border-rounded px-5 py-1"><i class="fa fa-plus mr-2"></i>Place Deposit</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

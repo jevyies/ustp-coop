@@ -1,0 +1,48 @@
+<div ng-controller="WithdrawalCtrl as vm">
+    <div class="bg-brownie full-main-mobile" style="height: 10px;"></div>
+    <div class="bg-light px-3 py-2 mobile-full-width">
+        <h2 class="font-weight-bolder mobile-text-center">USTP CDO Multi-Cooperative Web Portal</h2>
+        <p class="font-weight-bolder mt-3 font-size-20 mobile-text-center">Fill up the form</p>
+        <div class="bg-blue py-5">
+            <div class="d-flex align-items-center h-100">
+                <div class="col-md-4 text-white w-40">
+                    <p class="text-center font-weight-bolder"><span class="d-block font-size-58">Withdrawal</span><span class="font-size-120">Slip</span></p>
+                </div>
+                <div class="w-60 p-3">
+                    <form>
+                        <div class="bg-brownie p-1">
+                            <div class="mb-3 mt-2">
+                                <label for="name">Total Amount:</label>
+                                <div class="d-flex">
+                                    <input type="text" class="form-control form-control-lg" ng-model="vm.variables.totalAmt" only-numbers-wo-negative>
+                                </div>
+                            </div>
+                            <div class="mb-2 d-flex align-items-center">
+                                <label for="name" class="mr-2">Face Image Attachment:</label>
+                                <a href="javascript:void(0);" class="text-black" ng-click="vm.openCamera()"><i class="fa fa-camera font-size-48"></i></a>
+                            </div>
+                            <div class="mb-2 text-center">
+                                <button type="submit" class="btn-blue font-size-36 border-rounded px-5 py-1"><i class="fa fa-plus mr-2"></i>Place Withdrawal</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="vm.cameraOpened" class="semi-modal">
+        <div class="bg-white semi-modal-body">
+            <div class="semi-modal-header mb-2">
+                <h5 class="font-size-20 m-0 font-weight-bolder">Capture Photo</h5>
+                <button type="button" class="btn-clear text-danger" ng-click="vm.closeCamera()"><i class="fa fa-times"></i></button>
+            </div>
+            <div class="text-center">
+                <video id="video1" autoplay></video>
+                <div class="d-flex justify-content-center mt-2 retain-row">
+                    <button type="button" class="btn btn-clear mr-2">Cancel</button>
+                    <button type="button" class="btn btn-clear text-success">Capture</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

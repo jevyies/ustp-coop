@@ -19,7 +19,52 @@ angular
 	.directive('customOnChange', customOnChange)
 	.directive('focusMe', focusMe)
 	.directive('clickOutside', clickOutside)
+	.directive('onlyNumbersWoNegative', onlyNumbersWoNegative)
+	.directive('onlyNumbersWNegative', onlyNumbersWNegative);
 
+function onlyNumbersWoNegative() {
+	return {
+		restrict: 'A',
+		require: '?ngModel',
+		link: function (scope, element, attrs, ngModel) {
+			scope.$watch(attrs.ngModel, function (v) {
+				if (v) {
+					var Num = v.toString();
+					Num += '';
+					Num = Num.replace(',', ''); Num = Num.replace(',', ''); Num = Num.replace(',', '');
+					Num = Num.replace(',', ''); Num = Num.replace(',', ''); Num = Num.replace(',', '');
+					Num = Num.replace(',', ''); Num = Num.replace(',', ''); Num = Num.replace(',', '');
+					x = Num.split('.');
+					x1 = x[0];
+					x2 = x.length > 1 ? '.' + x[1] : '';
+					var rgx = /(\d+)(\d{3})/;
+					while (rgx.test(x1))
+						x1 = x1.replace(rgx, '$1' + ',' + '$2');
+					var final = x1 + x2;
+					var fixedInput = final.replace(/[^0-9.,]+/g, '');
+					ngModel.$setViewValue(fixedInput);
+					ngModel.$render();
+				}
+			});
+		}
+	};
+}
+function onlyNumbersWNegative() {
+	return {
+		restrict: 'A',
+		require: '?ngModel',
+		link: function (scope, element, attrs, ngModel) {
+			scope.$watch(attrs.ngModel, function (v) {
+				if (v) {
+					var fixedInput = v.replace(/[^0-9.,-]+/g, '');
+
+					ngModel.$setViewValue(fixedInput);
+					ngModel.$render();
+				}
+			});
+		}
+	};
+}
 function clickOutside($document, $parse, $timeout) {
 	return {
 		restrict: 'A',

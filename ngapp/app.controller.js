@@ -7,7 +7,7 @@ function AppCtrl($scope, $ocLazyLoad, $injector, $state) {
 	vm.masterfile = false;
 	vm.userName = '';
 	$ocLazyLoad.load([APPURL + 'app.service.js?v=' + VERSION]).then(function(d) {
-		AppSvc = $injector.get('AppSvc');
+		AccountSvc = $injector.get('AccountSvc');
 	});
 	vm.openSideMenu = function() {
 		var body = angular.element(document.querySelector('body'));
@@ -33,7 +33,7 @@ function AppCtrl($scope, $ocLazyLoad, $injector, $state) {
 				COMURL + 'user_details/controller.js?v=' + VERSION,
 			],
 		};
-		AppSvc.modal(options).then(function(data) {
+		AccountSvc.modal(options).then(function(data) {
 			if (data) {
 				vm.logout();
 			}

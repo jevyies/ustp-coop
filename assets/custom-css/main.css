@@ -1,3 +1,5 @@
+@import url('../fonts/abeezee/abeezee.css');
+@import url('../fonts/Poppins/poppins.css');
 *{
     margin: 0;
     padding: 0;
@@ -162,6 +164,9 @@ body {
     }
     .mobile-text-center{
         text-align: center !important;
+    }
+    h1{
+        font-size: 2rem !important;
     }
 }
 .t50px-l50px{
@@ -497,6 +502,7 @@ footer{
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     font-size: 14px;
+    z-index: 100;
 }
 
 .bg-light-orange{
@@ -816,4 +822,195 @@ form label{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.font-size-14{
+    font-size: 14px;
+}
+.form-control-lg.border-danger{
+    border-color: #dc3545;
+    border-width: 2px;
+}
+.loads-camera{
+    background-color: grey;
+    width: 350px;
+    height: 350px;
+    margin:0 auto;
+    display: none;
+}
+.d-block{
+    display: block;
+}
+.d-none{
+    display: none;
+}
+.camera-error{
+    color: #dc3545;
+}
+.confirmation-window .modal-content{
+    padding: 10px;
+}
+.confirmation-window .modal-dialog {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100vh;
+	width: 300px;
+	margin: 0px auto;
+	text-align: unset;
+}
+
+.confirmation-dialog h5 {
+	margin: 2px 0;
+}
+
+.confirmation-icon i {
+	font-size: 40px;
+	color: #dfa238;
+}
+
+.confirmation-icon {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 2px 5px;
+}
+
+.confirmation-icon i.danger {
+	font-size: 40px;
+	color: #e5302b;
+}
+
+.confirmation-dialog .flex-row {
+	padding: 10px 10px 0 5px;
+}
+
+.confirmation-text {
+	padding: 0 5px;
+}
+
+.confirmation-title{
+	font-weight: 800;
+}
+
+.confirmation-dialog .buttons {
+	display: flex;
+	justify-content: flex-end;
+	padding: 0 10px 10px;
+}
+
+.buttons h5 {
+	padding: 5px 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: bolder;
+	color: grey;
+}
+
+.truth {
+	color: #0084ff;
+}
+
+.truth.danger {
+	color: #e5302b;
+}
+
+.truth:hover {
+	background: #0084ff;
+	color: #fff;
+}
+
+.truth.danger:hover {
+	background: #e5302b;
+	color: #fff;
+}
+.dialog-btn {
+	padding: 0 100px;
+}
+.dialog-btn button{
+	width: 100px;
+	color: #0084ff;
+	padding: 5px 10px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 800;
+	border-radius: 5px;
+	border: none;
+}
+.dialog-btn h5 {
+	color: #0084ff;
+	padding: 10px;
+	cursor: pointer;
+	text-align: center;
+	font-weight: 800;
+	border-radius: 5px;
+}
+.dialog-btn button:hover {
+	background-color: #0084ff;
+	color: #fff;
+}
+.dialog-btn h5:hover {
+	background-color: #0084ff;
+	color: #fff;
+}
+.loading-screen.open {
+    opacity: 1;
+    z-index: 2000;
+    display: flex;
+}
+.loading-screen {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-family: "ABeeZee", sans-serif;
+    letter-spacing: 5px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: -10;
+    opacity: 0;
+    -webkit-box-reflect: below -12px linear-gradient(transparent, rgba(0, 0, 0.2));
+}
+
+.loading-screen img {
+    height: 300px;
+    width: 300px;
+    -webkit-animation: bounce 2s linear infinite;
+    -moz-animation: bounce 2s linear infinite;
+    animation: bounce 2s linear infinite;
+    margin-bottom: 50px;
+}
+
+.loading-screen span {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    font-size: 2em;
+    font-weight: 600;
+    text-transform: uppercase;
+    animation: animate 1s ease-in-out infinite;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(0px);
+    }
+    20% {
+        transform: translateY(-10px);
+    }
+    40%, 100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(10px);
+    }
 }

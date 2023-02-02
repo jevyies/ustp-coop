@@ -49,7 +49,7 @@
                         <i class="fa-solid fa-xmark font-size-48 cursor-pointer" ng-click="vm.closeLogin()"></i>
                     </div>
                     <div class="mb-2 d-flex align-items-center justify-content-center">
-                        <div class="bg-light-grey custom-size-200 cursor-pointer" ng-if="vm.loginCredentials.as === 'admin'">
+                        <div class="bg-light-grey custom-size-200 cursor-pointer" ng-if="vm.loginCredentials.type === 'admin'">
                             <svg width="150" height="150" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_434_43)">
                                 <path d="M255 253.5V216C255 205.5 253.5 195 247.5 184.5C241.5 174 234 165 223.5 159C213 151.5 190.5 150 180 150L156 175.5L165 195V240L150 256.5L135 240V195L145.5 175.5L120 150C108 150 85.5 151.5 75 159C64.5 165 58.5 174 52.5 184.5C46.5 195 45 204 45 216V253.5C45 253.5 84 270 150 270C216 270 255 253.5 255 253.5ZM150 31.5C121.5 31.5 105 58.5 109.5 88.5C114 118.5 129 139.5 150 139.5C171 139.5 186 118.5 190.5 88.5C195 57 178.5 31.5 150 31.5V31.5Z" fill="black"/>
@@ -64,7 +64,7 @@
                                 <p class="font-size-24">Admin</p>
                             </div>
                         </div>
-                        <div class="bg-light-grey custom-size-200 cursor-pointer" ng-if="vm.loginCredentials.as === 'member'">
+                        <div class="bg-light-grey custom-size-200 cursor-pointer" ng-if="vm.loginCredentials.type === 'member'">
                             <svg width="150" height="150" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_19_20)">
                                 <path d="M198 149.5L165 194.5L150 173.5L135 194.5L102 149.5C45 164.5 45 194.5 45 253C45 253 90 269.5 141 269.5H159C210 268 255 253 255 253C255 194.5 255 164.5 198 149.5ZM150 160L126 149.5L150 173.5L174 149.5L150 160ZM150 31C121.5 31 105 58 109.5 88C114 118 129 139 150 139C171 139 186 118 190.5 88C195 56.5 178.5 31 150 31Z" fill="black"/>

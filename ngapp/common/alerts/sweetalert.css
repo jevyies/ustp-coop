@@ -1,0 +1,513 @@
+.sweet-alert .icon {
+    width: 40px;
+    height: 40px;
+    border: 4px solid gray;
+    -webkit-border-radius: 40px;
+    border-radius: 50%;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    box-sizing: content-box
+}
+
+.sweet-alert .icon.error {
+    border-color: #F27474
+}
+
+.sweet-alert .icon.error .x-mark {
+    position: relative;
+    display: block
+}
+
+.sweet-alert .icon.error .line {
+    position: absolute;
+    height: 4px;
+    width: 24px;
+    background-color: #F27474;
+    display: block;
+    top: 19px;
+    border-radius: 2px;
+}
+
+.sweet-alert .icon.error .line.left {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    left: 8px;
+}
+
+.sweet-alert .icon.error .line.right {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    right: 8px
+}
+
+.sweet-alert .icon.warning {
+    border-color: #F8BB86
+}
+
+.sweet-alert .icon.warning .body {
+    position: absolute;
+    width: 5px;
+    height: 10px;
+    left: 50%;
+    top: 10px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    margin-left: -2px;
+    background-color: #F8BB86;
+}
+
+.sweet-alert .icon.warning .dot {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin-left: -3px;
+    left: 50%;
+    bottom: 10px;
+    background-color: #F8BB86
+}
+
+.sweet-alert .icon.info {
+    border-color: #C9DAE1
+}
+
+.sweet-alert .icon.info::before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 29px;
+    left: 50%;
+    bottom: 17px;
+    border-radius: 2px;
+    margin-left: -2px;
+    background-color: #C9DAE1
+}
+
+.sweet-alert .icon.info::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    margin-left: -3px;
+    top: 19px;
+    background-color: #C9DAE1;
+    left: 50%;
+}
+
+.sweet-alert .icon.success {
+    border-color: #A5DC86
+}
+
+.sweet-alert .icon.success::after, .sweet-alert .icon.success::before {
+    /* content: '';
+    position: absolute;
+    width: 15px;
+    height: 30px;
+    background: #fff;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg); */
+}
+
+.sweet-alert .icon.success::before {
+    -webkit-border-radius: 120px 0 0 120px;
+    border-radius: 120px 0 0 120px;
+    top: -7px;
+    left: -33px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 50px -25px;
+    transform-origin: 50px -25px;
+}
+
+.sweet-alert .icon.success::after {
+    -webkit-border-radius: 0 120px 120px 0;
+    border-radius: 0 120px 120px 0;
+    top: -12px;
+    left: 52px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform-origin: 0 60px;
+    transform-origin: 0px 60px;
+}
+
+.sweet-alert .icon.success .placeholder {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(165, 220, 134, .2);
+    -webkit-border-radius: 40px;
+    border-radius: 50%;
+    box-sizing: content-box;
+    position: absolute;
+    left: -4px;
+    top: -4px;
+    z-index: 2;
+}
+
+.sweet-alert .icon.success .fix {
+    width: 5px;
+    height: 10px;
+    background-color: #fff;
+    position: absolute;
+    left: 12px;
+    top: 18px;
+    z-index: 1;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.sweet-alert .icon.success .line {
+    height: 5px;
+    background-color: #A5DC86;
+    display: block;
+    border-radius: 2px;
+    position: absolute;
+    z-index: 2;
+}
+
+.sweet-alert .icon.success .line.tip {
+    width: 10px;
+    left: 8px;
+    top: 20px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.sweet-alert .icon.success .line.long {
+    width: 20px;
+    right: 8px;
+    top: 18px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.sweet-alert .icon.custom {
+    background-size: contain;
+    border-radius: 0;
+    border: none;
+    background-position: center center;
+    background-repeat: no-repeat
+}
+
+@-webkit-keyframes showSweetAlert {
+    0% {
+        transform: scale(.7);
+        -webkit-transform: scale(.7)
+    }
+    45% {
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05)
+    }
+    80% {
+        transform: scale(.95);
+        -webkit-tranform: scale(.95)
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1)
+    }
+}
+
+@keyframes showSweetAlert {
+    0% {
+        transform: scale(.7);
+        -webkit-transform: scale(.7)
+    }
+    45% {
+        transform: scale(1.05);
+        -webkit-transform: scale(1.05)
+    }
+    80% {
+        transform: scale(.95);
+        -webkit-tranform: scale(.95)
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1)
+    }
+}
+
+@-webkit-keyframes hideSweetAlert {
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1)
+    }
+    100% {
+        transform: scale(.5);
+        -webkit-transform: scale(.5)
+    }
+}
+
+@keyframes hideSweetAlert {
+    0% {
+        transform: scale(1);
+        -webkit-transform: scale(1)
+    }
+    100% {
+        transform: scale(.5);
+        -webkit-transform: scale(.5)
+    }
+}
+
+.showSweetAlert {
+    -webkit-animation: showSweetAlert .3s;
+    animation: showSweetAlert .3s
+}
+
+.showSweetAlert[data-animation=none] {
+    -webkit-animation: none;
+    animation: none
+}
+
+.hideSweetAlert {
+    -webkit-animation: hideSweetAlert .2s;
+    animation: hideSweetAlert .2s
+}
+
+.hideSweetAlert[data-animation=none] {
+    -webkit-animation: none;
+    animation: none
+}
+
+@-webkit-keyframes animateSuccessTip {
+    0%, 54% {
+        width: 0;
+        left: 5px;
+        top: 0px;
+    }
+    70% {
+        width: 15px;
+        left: 3px;
+        top: 21px;
+    }
+    84% {
+        width: 12px;
+        left: 6px;
+        top: 18px
+    }
+    100% {
+        width: 10px;
+        left: 8px;
+        top: 20px
+    }
+}
+
+@keyframes animateSuccessTip {
+    0%, 54% {
+        width: 0;
+        left: 5px;
+        top: 0px;
+    }
+    70% {
+        width: 15px;
+        left: 3px;
+        top: 21px;
+    }
+    84% {
+        width: 12px;
+        left: 6px;
+        top: 18px
+    }
+    100% {
+        width: 10px;
+        left: 8px;
+        top: 20px
+    }
+}
+
+@-webkit-keyframes animateSuccessLong {
+    0%, 65% {
+        width: 0;
+        right: 8px;
+        top: 20px
+    }
+    84% {
+        width: 25px;
+        right: 0;
+        top: 16px
+    }
+    100% {
+        width: 20px;
+        right: 8px;
+        top: 18px
+    }
+}
+
+@keyframes animateSuccessLong {
+    0%, 65% {
+        width: 0;
+        right: 8px;
+        top: 20px
+    }
+    84% {
+        width: 25px;
+        right: 0;
+        top: 16px
+    }
+    100% {
+        width: 20px;
+        right: 8px;
+        top: 18px
+    }
+}
+
+@-webkit-keyframes rotatePlaceholder {
+    0%, 5% {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg)
+    }
+    100%, 12% {
+        transform: rotate(-405deg);
+        -webkit-transform: rotate(-405deg)
+    }
+}
+
+@keyframes rotatePlaceholder {
+    0%, 5% {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg)
+    }
+    100%, 12% {
+        transform: rotate(-405deg);
+        -webkit-transform: rotate(-405deg)
+    }
+}
+
+.animateSuccessTip {
+    -webkit-animation: animateSuccessTip .75s;
+    animation: animateSuccessTip .75s
+}
+
+.animateSuccessLong {
+    -webkit-animation: animateSuccessLong .75s;
+    animation: animateSuccessLong .75s
+}
+
+.icon.success.animate::after {
+    -webkit-animation: rotatePlaceholder 4.25s ease-in;
+    animation: rotatePlaceholder 4.25s ease-in
+}
+
+@-webkit-keyframes animateErrorIcon {
+    0% {
+        transform: rotateX(100deg);
+        -webkit-transform: rotateX(100deg);
+        opacity: 0
+    }
+    100% {
+        transform: rotateX(0deg);
+        -webkit-transform: rotateX(0deg);
+        opacity: 1
+    }
+}
+
+@keyframes animateErrorIcon {
+    0% {
+        transform: rotateX(100deg);
+        -webkit-transform: rotateX(100deg);
+        opacity: 0
+    }
+    100% {
+        transform: rotateX(0deg);
+        -webkit-transform: rotateX(0deg);
+        opacity: 1
+    }
+}
+
+.animateErrorIcon {
+    -webkit-animation: animateErrorIcon .5s;
+    animation: animateErrorIcon .5s
+}
+
+@-webkit-keyframes animateXMark {
+    0%, 50% {
+        transform: scale(.4);
+        -webkit-transform: scale(.4);
+        margin-top: 26px;
+        opacity: 0
+    }
+    80% {
+        transform: scale(1.15);
+        -webkit-transform: scale(1.15);
+        margin-top: -6px
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        margin-top: 0;
+        opacity: 1
+    }
+}
+
+@keyframes animateXMark {
+    0%, 50% {
+        transform: scale(.4);
+        -webkit-transform: scale(.4);
+        margin-top: 26px;
+        opacity: 0
+    }
+    80% {
+        transform: scale(1.15);
+        -webkit-transform: scale(1.15);
+        margin-top: -6px
+    }
+    100% {
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        margin-top: 0;
+        opacity: 1
+    }
+}
+
+.animateXMark {
+    -webkit-animation: animateXMark .5s;
+    animation: animateXMark .5s
+}
+
+@-webkit-keyframes pulseWarning {
+    0% {
+        border-color: #F8D486
+    }
+    100% {
+        border-color: #F8BB86
+    }
+}
+
+@keyframes pulseWarning {
+    0% {
+        border-color: #F8D486
+    }
+    100% {
+        border-color: #F8BB86
+    }
+}
+
+.pulseWarning {
+    -webkit-animation: pulseWarning .75s infinite alternate;
+    animation: pulseWarning .75s infinite alternate
+}
+
+@-webkit-keyframes pulseWarningIns {
+    0% {
+        background-color: #F8D486
+    }
+    100% {
+        background-color: #F8BB86
+    }
+}
+
+@keyframes pulseWarningIns {
+    0% {
+        background-color: #F8D486
+    }
+    100% {
+        background-color: #F8BB86
+    }
+}
+
+.pulseWarningIns {
+    -webkit-animation: pulseWarningIns .75s infinite alternate;
+    animation: pulseWarningIns .75s infinite alternate
+}

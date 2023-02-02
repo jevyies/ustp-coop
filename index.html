@@ -11,8 +11,28 @@
     <link href="assets/components/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/components/fontawesome/css/all.css" rel="stylesheet">
     <link href="assets/custom-css/main.css" rel="stylesheet">
+    <link href="assets/components/angular-toastr/dist/angular-toastr.css" rel="stylesheet">
 </head>
 <body ng-app="app" class="bg-light-orange">
+    <div id="loading-screen" class="loading-screen">
+        <div class="d-flex flex-column">
+            <div class="loading-gif">
+                <img src="assets/images/coop-logo.png" />
+            </div>
+            <div class="loading-text">
+                <span style="--i:1">L</span>
+                <span style="--i:2">o</span>
+                <span style="--i:3">a</span>
+                <span style="--i:4">d</span>
+                <span style="--i:5">i</span>
+                <span style="--i:6">n</span>
+                <span style="--i:7">g</span>
+                <span style="--i:8">.</span>
+                <span style="--i:9">.</span>
+                <span style="--i:10">.</span>
+            </div>
+        </div>
+    </div>
     <ui-view></ui-view>
     <!-- jquery scripts -->
     <script src="assets/components/jquery/jquery.min.js"></script>
@@ -27,6 +47,8 @@
     <script src="assets/components/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="assets/components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="assets/components/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="assets/components/angular-toastr/dist/angular-toastr.min.js"></script>
+    <script src="assets/components/angular-toastr/dist/angular-toastr.tpls.min.js"></script>
 
     <!-- custom scripts -->
     <script src="ngapp/app.module.js"></script>

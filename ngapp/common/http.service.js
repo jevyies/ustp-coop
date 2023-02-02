@@ -6,10 +6,9 @@
 		.factory('baseService', baseService);
 
 	httpService.$inject = ['$http', '$q', '$httpParamSerializerJQLike', '$ocLazyLoad', '$uibModal'];
-	baseService.$inject = ['httpService', '$q', '$ocLazyLoad', '$uibModal', '$filter'];
+	baseService.$inject = ['httpService', '$q', '$ocLazyLoad', '$uibModal', '$filter', 'toastr'];
 
 	function httpService($http, $q, $httpParamSerializerJQLike, $ocLazyLoad, $uibModal) {
-		var baseURL = '';
 		var service = {
 			getData: getData,
 			postData: postData,
@@ -40,40 +39,44 @@
 				},
 				function (error) {
 					if (error.status == 403) {
-						swal('You are not logged in. Please login again.', '', 'error');
 						window.location.href = BASE_URL + 'auth/login';
 					}
 				}
 			);
 		}
-		function postData(data) {
-			return $http({
+		async function postData(data) {
+			LOADING.classList.add('open');
+			return await $http({
 				method: 'POST',
 				url: this.baseURL,
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
 				data: $.param(data), //$httpParamSerializerJQLike(data)
 			}).then(
 				function (response) {
+					LOADING.classList.remove('open');
+					console.log(response);
 					return response;
 				},
 				function (error) {
-					swal(error.data.message, '', 'warning');
-					return false;
+					LOADING.classList.remove('open');
+					return error;
 				}
 			);
 		}
-		function putData(data) {
-			return $http({
+		async function putData(data) {
+			LOADING.classList.add('open');
+			return await $http({
 				method: 'PUT',
 				url: this.baseURL,
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 				data: $.param(data),
 			}).then(
 				function (response) {
+					LOADING.classList.remove('open');
 					return response;
 				},
 				function (error) {
-					swal(error.data.message, '', 'warning');
+					LOADING.classList.remove('open');
 					return false;
 				}
 			);
@@ -109,30 +112,31 @@
 					},
 				});
 				modalInstance.result.then(
-					function (data) {
+					 	async function (data) {
 						if (data) {
-							return $http({
+							LOADING.classList.add('open');
+							return await $http({
 								method: 'DELETE',
 								url: baseURL,
 								headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 							}).then(
 								function (results) {
+									LOADING.classList.remove('open');
 									deferred.resolve(results);
 								},
 								function (error) {
+									LOADING.classList.remove('open');
 									deferred.resolve(false);
 								}
 							);
 						}
 					},
-					function () {
-						console.log('Modal closed');
-					}
 				);
 			});
 			return deferred.promise;
 		}
 		function uploadData(data) {
+			LOADING.classList.add('open');
 			return $http({
 				method: 'POST',
 				url: this.baseURL,
@@ -142,17 +146,18 @@
 				data: data,
 			}).then(
 				function (results) {
+					LOADING.classList.remove('open');
 					return results;
 				},
 				function (error) {
-					swal(error.data.message, '', 'warning');
+					LOADING.classList.remove('open');
 					return false;
 				}
 			);
 		}
 	}
 
-	function baseService(httpService, $q, $ocLazyLoad, $uibModal, $filter) {
+	function baseService(httpService, $q, $ocLazyLoad, $uibModal, $filter, toastr) {
 		var baseService = function () {
 			var service = {
 				modal: modal,
@@ -160,6 +165,7 @@
 				save: save,
 				delete: remove,
 				showAlert: showSweetAlert,
+				showToaster: showToaster,
 				http: angular.copy(httpService),
 				records: [],
 				upload: upload,
@@ -169,6 +175,16 @@
 			};
 
 			return service;
+
+			function showToaster(title, message, icon) {
+                if (icon === 'success') {
+                    toastr.success(message, title);
+                } else if (icon === 'warning') {
+                    toastr.warning(message, title);
+                } else {
+                    toastr.error(message, title);
+                }
+            }
 
 			function modal(options) {
 				var templateUrl = options.templateUrl;
@@ -293,15 +309,15 @@
 					return response.data;
 				});
 			}
-			function save(data) {
+			async function save(data) {
 				httpService.baseURL = this.url;
-				return httpService.postData(data).then(function (response) {
-					return response.data;
-				});
+				return await httpService.postData(data).then(function (response) {
+					return response;
+				})
 			}
-			function upload(data) {
+			async function upload(data) {
 				httpService.baseURL = this.url;
-				return httpService.uploadData(data).then(function (response) {
+				return await httpService.uploadData(data).then(function (response) {
 					return response.data;
 				})
 			}

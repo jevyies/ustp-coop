@@ -1,5 +1,5 @@
-<div class="min-height-100vh">
-    <div class="position-fixed to-not-fixed t50px-l50px">
+<div class="min-height-100vh" ng-controller="RegistrationCtrl as vm">
+    <div class="position-fixed to-not-fixed t50px-l50px" style="z-index: 100;">
         <a ui-sref="main"><img src="assets/images/coop-logo.png" alt="Coop Logo" class="sub-logo"></a>
     </div>
     <div class="d-flex align-items-center h-100vh">
@@ -7,44 +7,82 @@
             <h1 class="m-0 mr-2 text-secondary text-bolder"><b><span class="font-size-80">Join us </span><span class="font-size-120">now.</span></b></h1>
         </div>
         <div class="w-50 p-5">
-            <form>
+            <form ng-submit="vm.save()" name="myForm">
                 <div class="bg-brown p-3">
                     <div class="mb-2">
                         <label for="name">Name:</label>
                         <div class="d-flex">
                             <span class="space-5"></span>
-                            <input type="text" class="form-control form-control-lg ml-5">
+                            <input 
+                                type="text" 
+                                name="name" 
+                                class="form-control form-control-lg ml-5" 
+                                required 
+                                ng-model="vm.variables.name" 
+                            >
                         </div>
+
                     </div>
                     <div class="mb-2">
                         <label for="name">Email:</label>
                         <div class="d-flex">
                             <span class="space-5"></span>
-                            <input type="email" class="form-control form-control-lg ml-5">
+                            <input type="email" name="email" class="form-control form-control-lg ml-5" required ng-model="vm.variables.email">
                         </div>
                     </div>
                     <div class="mb-2">
                         <label for="name">Password:</label>
                         <div class="d-flex">
                             <span class="space-5"></span>
-                            <input type="password" class="form-control form-control-lg ml-5">
+                            <input type="password" name="password" class="form-control form-control-lg ml-5" required ng-model="vm.variables.password">
                         </div>
                     </div>
                     <div class="mb-2">
                         <label for="name">Confirm Password:</label>
                         <div class="d-flex">
                             <span class="space-5"></span>
-                            <input type="password" class="form-control form-control-lg ml-5">
+                            <input type="password" name="confirmPassword" class="form-control form-control-lg ml-5" ng-class="{'border-danger': vm.submitted && vm.passwordNotMatch}" required ng-model="vm.variables.confirmPassword">
+                        </div>
+                        <div class="d-flex" ng-if="vm.submitted && vm.passwordNotMatch">
+                            <span class="space-5"></span>
+                            <small class="text-danger font-size-14 ml-5 font-weight-bolder" >Password not matched</small>
                         </div>
                     </div>
+                    <div class="mb-2 d-flex align-items-center">
+                        <label for="name" class="mr-2">Face Image Attachment:</label>
+                        <a href="javascript:void(0);" class="text-black" ng-click="vm.openCamera()"><i class="fa fa-camera font-size-48 mr-2" ng-class="{'camera-error': vm.submitted && !vm.captured}"></i></a>
+                        <canvas v-if="vm.captured" height="100" width="120" id="canvas"></canvas>
+                    </div>
                     <div class="text-center mb-2">
-                        <button type="button" class="btn-brown font-size-36">REGISTER</button>
+                        <button type="submit" class="btn-brown font-size-36">REGISTER</button>
                     </div>
                     <div class="d-flex justify-content-end">
                         <button type="button" ui-sref="login" class="btn-clear-link font-size-36">Already registered?</button>
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+    <div ng-if="vm.cameraOpened" class="semi-modal">
+        <div class="bg-white semi-modal-body">
+            <div class="semi-modal-header mb-2">
+                <h5 class="font-size-20 m-0 font-weight-bolder">Capture Photo</h5>
+                <button type="button" class="btn-clear text-danger" ng-click="vm.closeCamera()"><i class="fa fa-times"></i></button>
+            </div>
+            <div class="text-center">
+                <video id="video1" autoplay></video>
+                <div class="d-flex justify-content-center mt-2 retain-row">
+                    <button type="button" class="btn btn-clear mr-2" ng-click="vm.closeCamera()">Cancel</button>
+                    <button type="button" class="btn btn-clear text-success" ng-click="vm.capture()">Capture</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  class="full-page position-fixed bg-light-orange" style="z-index: 99;" ng-if="vm.successfulRegistration">
+        <div class="h-100 w-100 d-flex flex-column align-items-center justify-content-center text-center">
+            <h1 class="ml-0 mt-0 mb-2 mr-0 text-secondary text-bolder"><b><span class="font-size-80">Congratulations!</b></h1>
+            <h1 class="m-0 mb-2 font-size-60">Check your email [{{vm.variables.email}}] for further notice before proceeding on login.</h1>
+            <a ui-sref="login"><button type="button" class="btn-brown font-size-36 border-radius-20">Login</button></a>
         </div>
     </div>
     <div ng-include="'ngapp/common/layouts/footer.html'" include-replace></div>

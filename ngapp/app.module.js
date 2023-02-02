@@ -1,9 +1,10 @@
-const APIURL = '';
+const APIURL = 'http://localhost:9000/';
 const APPURL = 'ngapp/';
 const VERSION = '1.0.0';
 const COMURL = APPURL + 'common/';
 const REGURL = APPURL + 'registration/';
 const LOGURL = APPURL + 'login/';
+const LOADING = document.getElementById('loading-screen');
 
 // Default colors
 
@@ -17,6 +18,7 @@ angular
 		'ui.bootstrap',
 		'sharedMod',
 		'ngMask',
+		'toastr'
 	])
 	.config([
 		'cfpLoadingBarProvider',

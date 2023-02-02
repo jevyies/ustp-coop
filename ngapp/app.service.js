@@ -3,13 +3,34 @@
 	angular
 		.module('app')
 
-		.factory('AppSvc', AppSvc);
+		.factory('AccountSvc', AccountSvc)
+		.factory('DepositSvc', DepositSvc)
+		.factory('WithdrawSvc', WithdrawSvc)
+		.factory('TransactionSvc', TransactionSvc)
 
-	AppSvc.$inject = ['baseService', '$uibModal', '$ocLazyLoad'];
+	AccountSvc.$inject = ['baseService', '$uibModal', '$ocLazyLoad'];
+	DepositSvc.$inject = ['baseService', '$uibModal', '$ocLazyLoad'];
+	WithdrawSvc.$inject = ['baseService', '$uibModal', '$ocLazyLoad'];
+	TransactionSvc.$inject = ['baseService', '$uibModal', '$ocLazyLoad'];
 
-	function AppSvc(baseService, $uibModal, $ocLazyLoad) {
+	function AccountSvc(baseService, $uibModal, $ocLazyLoad) {
 		var service = new baseService();
-		service.url = APIURL + 'login/user';
+		service.url = APIURL + 'api/';
+		return service;
+	}
+	function DepositSvc(baseService, $uibModal, $ocLazyLoad) {
+		var service = new baseService();
+		service.url = APIURL + 'deposit/';
+		return service;
+	}
+	function WithdrawSvc(baseService, $uibModal, $ocLazyLoad) {
+		var service = new baseService();
+		service.url = APIURL + 'widthdraw/';
+		return service;
+	}
+	function TransactionSvc(baseService, $uibModal, $ocLazyLoad) {
+		var service = new baseService();
+		service.url = APIURL + 'transaction/';
 		return service;
 	}
 })();

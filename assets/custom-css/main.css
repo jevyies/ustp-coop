@@ -1014,3 +1014,12 @@ form label{
         transform: translateY(10px);
     }
 }
+.ui-grid-cell-contents{
+    font-size: 16px;
+}
+.ui-grid-icons-and-icons{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}

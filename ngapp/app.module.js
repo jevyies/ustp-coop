@@ -18,7 +18,11 @@ angular
 		'ui.bootstrap',
 		'sharedMod',
 		'ngMask',
-		'toastr'
+		'toastr',
+		'ui.grid',
+        'ui.grid.cellNav',
+        'ui.grid.selection',
+        'ui.grid.resizeColumns',
 	])
 	.config([
 		'cfpLoadingBarProvider',

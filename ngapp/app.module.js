@@ -5,7 +5,6 @@ const COMURL = APPURL + 'common/';
 const REGURL = APPURL + 'registration/';
 const LOGURL = APPURL + 'login/';
 const LOADING = document.getElementById('loading-screen');
-
 // Default colors
 
 angular

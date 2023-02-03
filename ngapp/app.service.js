@@ -22,7 +22,7 @@
 	}
 	function AccountDetailSvc(baseService, $uibModal, $ocLazyLoad) {
 		var service = new baseService();
-		service.url = APIURL + 'api-detail/';
+		service.url = APIURL + 'api-search/';
 		return service;
 	}
 	function DepositSvc(baseService, $uibModal, $ocLazyLoad) {

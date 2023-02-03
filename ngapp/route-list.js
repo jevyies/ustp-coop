@@ -134,6 +134,24 @@ const ROUTES = [
 		}
 	},
 	{
+		'app.requests': {
+			url: '/requests',
+			templateUrl: APPURL + 'requests/view.html?v=' + VERSION,
+			requireLogin: true,
+			loginAs: 'admin',
+			resolve: {
+				loadMyCtrl: [
+					'$ocLazyLoad',
+					function ($ocLazyLoad) {
+						return $ocLazyLoad.load({
+							files: [APPURL + 'requests/controller.js?v=' + VERSION],
+						});
+					},
+				],
+			},
+		}
+	},
+	{
 		'member': {
 			abstract: true,
 			templateUrl: COMURL + 'full-member.html?v=' + VERSION,
@@ -206,7 +224,10 @@ const ROUTES = [
 					'$ocLazyLoad',
 					function ($ocLazyLoad) {
 						return $ocLazyLoad.load({
-							files: [APPURL + 'members/withdrawal/controller.js?v=' + VERSION],
+							files: [
+								APPURL + 'members/withdrawal/controller.js?v=' + VERSION,
+								APPURL + 'members/withdrawal/face-api.min.js?v=' + VERSION,
+							],
 						});
 					},
 				],

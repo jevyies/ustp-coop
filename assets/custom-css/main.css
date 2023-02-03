@@ -895,7 +895,6 @@ form label{
 .confirmation-dialog .buttons {
 	display: flex;
 	justify-content: flex-end;
-	padding: 0 10px 10px;
 }
 
 .buttons h5 {
@@ -903,7 +902,6 @@ form label{
 	border-radius: 5px;
 	cursor: pointer;
 	font-weight: bolder;
-	color: grey;
 }
 
 .truth {
@@ -1022,4 +1020,49 @@ form label{
     height: 100%;
     justify-content: center;
     align-items: center;
+}
+.ui-grid-viewport{
+    background-color: #fff;
+}
+.modal-title-div {
+	border-radius: 2px;
+	height: 40px;
+	width: 100%;
+	position: absolute;
+	z-index: 100;
+	margin-bottom: 25px;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 9px;
+}
+
+.modal-exit {
+	font-size: 25px;
+	float: right;
+	margin-right: 5px;
+	outline: 0;
+}
+
+.modal-body {
+	margin-top: 40px;
+}
+
+.modal-title-name {
+	left: 0;
+	color: #777;
+	font-weight: 600;
+}
+.text-brown{
+    color: #A2844E;
+    font-weight: 600;
+}
+#canvas1{
+    position: absolute;
+}
+.remove-opacity{
+    opacity: 0;
+    z-index: -5;
+}
+.remove-opacity.open{
+    opacity: 1;
+    z-index: 1000;
 }

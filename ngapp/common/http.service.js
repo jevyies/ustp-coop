@@ -163,6 +163,7 @@
 				modal: modal,
 				get: get,
 				save: save,
+				update: update,
 				delete: remove,
 				showAlert: showSweetAlert,
 				showToaster: showToaster,
@@ -315,6 +316,12 @@
 					return response;
 				})
 			}
+			async function update(data) {
+				httpService.baseURL = this.url;
+				return await httpService.putData(data).then(function (response) {
+					return response;
+				})
+			}
 			async function upload(data) {
 				httpService.baseURL = this.url;
 				return await httpService.uploadData(data).then(function (response) {
@@ -322,9 +329,9 @@
 				})
 			}
 			function remove(id) {
-				httpService.baseURL = this.url + '?id=' + id;
+				httpService.baseURL = this.url+id;
 				return httpService.deleteData().then(function (response) {
-					return response.data;
+					return response;
 				});
 			}
 		};

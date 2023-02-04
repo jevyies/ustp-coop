@@ -54,7 +54,6 @@
 			}).then(
 				function (response) {
 					LOADING.classList.remove('open');
-					console.log(response);
 					return response;
 				},
 				function (error) {
@@ -141,7 +140,7 @@
 				method: 'POST',
 				url: this.baseURL,
 				withCredentials: true,
-				headers: { 'Content-Type': undefined },
+				headers: { "Content-Type": undefined },
 				transformRequest: angular.identity,
 				data: data,
 			}).then(
@@ -172,10 +171,18 @@
 				upload: upload,
 				has_get: false,
 				getDate: getDate,
-				confirmation: confirmation
+				confirmation: confirmation,
+				getAmount: getAmount,
 			};
 
 			return service;
+			
+			function getAmount(amount) {
+                if (amount) {
+                    var dt = amount.replace(/,/g, '');
+                    return dt;
+                }
+            }
 
 			function showToaster(title, message, icon) {
                 if (icon === 'success') {
@@ -294,7 +301,7 @@
 			}
 			function getDate(inputDate) {
 				var dt = new Date(inputDate);
-				var dtString = dt.getFullYear() + '-' + pad(dt.getMonth() + 1) + '-' + pad(dt.getDate());
+				var dtString = dt.getFullYear() + '-' + pad(dt.getMonth() + 1, 2) + '-' + pad(dt.getDate(), 2);
 				return dtString;
 			}
 			function pad(number, length) {
@@ -325,7 +332,7 @@
 			async function upload(data) {
 				httpService.baseURL = this.url;
 				return await httpService.uploadData(data).then(function (response) {
-					return response.data;
+					return response;
 				})
 			}
 			function remove(id) {

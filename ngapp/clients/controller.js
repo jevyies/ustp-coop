@@ -83,7 +83,7 @@ function ClientCtrl($scope, $ocLazyLoad, $injector, filter) {
         AccountSvc.delete(data.id).then(function (response) {
             console.log(response);
             if (response) {
-                vm.list.splice(index, 1, response);
+                vm.list.splice(index, 1);
                 vm.filtered = vm.list;
                 AccountSvc.showToaster('Success!', response.data.message, 'success');
             } else {

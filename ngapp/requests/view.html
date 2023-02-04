@@ -1,0 +1,25 @@
+<div ng-controller="RequestCtrl as vm">
+    <div class="bg-light w-100">
+        <div class="p-2">
+            <h2 class="font-weight-bolder">Welcome to USTP CDO Multi-Cooperative Web Portal</h2>
+            <h4 class="mb-0"><i>Request List</i></h4>
+        </div>
+    </div>
+    <div class="p-2">
+        <div class="row mb-1">
+            <div class="col-md-3">
+                <input type="text" class="form-control" ng-model="vm.search" placeholder="Search Client" ng-change="vm.searching()">
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="d-flex w-100 retain-row align-items-center">
+                    <h4 class="text-nowrap my-0 mr-1">Filters:</h4>
+                    <input type="date" class="form-control mr-1" ng-model="vm.variables.dateFrom" >
+                    <input type="date" class="form-control mr-1" ng-model="vm.variables.dateTo" >
+                    <button type="button" class="btn">Go</button>
+                </div>
+            </div>
+        </div>
+        <div ui-grid="vm.requestGrid" ui-grid-selection ui-grid-resize-columns></div>
+    </div>
+</div>

@@ -8,6 +8,10 @@ function WithdrawalCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
     vm.localStream = null;
     vm.variables = {};
     var interValId = null;
+    vm.successfulWithdrawal = false;
+    $ocLazyLoad.load([APPURL + 'app.service.js?v=' + VERSION]).then(function (d) {
+        WithdrawSvc = $injector.get('WithdrawSvc');
+    });
     vm.openCamera = async function () {
         vm.cameraOpened = true;
         Promise.all([
@@ -36,14 +40,43 @@ function WithdrawalCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
             canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
             faceapi.draw.drawDetections(canvas, resizedDetections)
             if(resizedDetections.length > 0){
-                vm.variables.image = canvas.toDataURL("image/png");
                 vm.saveWithdrawal();
             }
         }, 3000)
     });
     vm.saveWithdrawal = function(){
-        console.log(vm.variables);
+        let canvas = document.querySelector("#capturedImg");
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+        video.srcObject.getTracks().forEach(function(track) {
+            track.stop();
+        });
+        let account = JSON.parse(localStorage.getItem('credentials'));
+        let data = angular.copy(vm.variables);
+        data.account_id = account.id;
+        data.total_amount = WithdrawSvc.getAmount(vm.variables.totalAmt);
+        data.image = canvas.toDataURL("image/jpg").replace(/^data:image\/[a-z]+;base64,/, "");
+        data.purpose = 'request_withdrawal';
+        WithdrawSvc.save(data).then(function (res) {
+            if(!res.data.success){
+                return WithdrawSvc.showAlert('Verification Error', res.data.message, 'error')
+            }
+            if(res.data.id){
+                return vm.successfulWithdrawal = true;
+            }
+            return WithdrawSvc.showAlert('Error', 'Something went wrong', 'error')
+        });
     }
+    vm.closeAll = function(){
+        const modal = document.getElementById('modal1');
+        modal.classList.remove('open');
+        clearInterval(interValId);
+        interValId = null;
+        const recanvas = document.getElementById('canvas1');
+        recanvas && recanvas.remove();
+        vm.variables = {};
+        vm.successfulWithdrawal = false;
+    }
+
     vm.closeCamera = function () {
         video.srcObject.getTracks().forEach(function(track) {
             track.stop();

@@ -36,8 +36,10 @@ function RegistrationCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
     vm.capture = function () {
         vm.captured = true;
         let canvas = document.querySelector("#canvas");
+        let canvas2 = document.querySelector("#capturedImg");
         canvas.getContext('2d').drawImage(vm.webcamVideo, 0, 0, canvas.width, canvas.height);
-        vm.variables.image = canvas.toDataURL('image/jpeg');
+        canvas2.getContext('2d').drawImage(vm.webcamVideo, 0, 0, canvas2.width, canvas2.height);
+        vm.variables.image = canvas2.toDataURL('image/jpeg');
         vm.closeCamera();
     }
     vm.save = function () {

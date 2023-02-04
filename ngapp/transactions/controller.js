@@ -5,43 +5,55 @@ TransactionCtrl.$inject = ['$scope', '$ocLazyLoad', '$injector', '$filter'];
 function TransactionCtrl($scope, $ocLazyLoad, $injector, filter) {
     var vm = this;
     $ocLazyLoad.load([APPURL + 'app.service.js?v=' + VERSION]).then(function (d) {
-        AccountSvc = $injector.get('AccountSvc');
         AccountDetailSvc = $injector.get('AccountDetailSvc');
-        vm.getAccounts({account_status: 'pending'});
+        TransactionSvc = $injector.get('TransactionSvc');
+        vm.getAccounts({account_status: 'approved'});
     });
     vm.list = [];
     vm.filtered = [];
+    vm.listTransaction = [];
+    vm.filteredTransaction = [];
     vm.search = '';
     vm.optionList = 'pending';
     vm.variables = {};
-    var cellTemplate1 =
-		'<div class="text-center cursor-pointer ui-grid-icons-and-icons" ng-click="grid.appScope.vm.update(row.entity)"><span class="fa fa-edit text-success font-size-16"></span></div>';
-	var cellTemplate2 =
-		'<div class="text-center cursor-pointer ui-grid-icons-and-icons" ng-click="grid.appScope.vm.delete(row.entity)"><span class="fa fa-trash text-danger font-size-16"></span></div>';
-    var cellTemplate3 =
-		`<div class="ui-grid-icons-and-icons" ng-if="row.entity.account_no === ''">
-            <a href="javascript:void(0)" class="text-success mr-2 font-size-16" title="Accept" ng-click="grid.appScope.vm.acceptUser(row.entity)">Accept</a>
-            <a href="javascript:void(0)" class="text-danger font-size-16" title="Accept" ng-click="grid.appScope.vm.addPayment(row.entity)">Decline</a>
-        </div>`;
-    var cellTemplate4 = `<div class="ui-grid-icons-and-icons"><img src="{{row.entity.image}}" class="img-fluid cursor-pointer" style="width: 20px; height: 20px;"></div>`
-	vm.defaultGrid = {
-		enableRowSelection: false,
+    var lastYear = new Date().getFullYear() - 1;
+    var month = new Date().getMonth() + 1;
+    var day = new Date().getDate();
+    vm.variables.dateFrom = new Date('' + lastYear + '-' + month + '-' + day + '');
+    vm.variables.dateTo = new Date();
+	vm.userGrid = {
+		enableRowSelection: true,
 		enableCellEdit: false,
 		enableColumnMenus: false,
 		modifierKeysToMultiSelect: true,
 		enableRowHeaderSelection: false,
 		columnDefs: [
-			{ name: '  ', cellTemplate: cellTemplate1, width: 20 },
-			{ name: ' ', cellTemplate: cellTemplate2, width: 20 },
 			{ name: 'Account', displayName: 'Account No', field: 'account_no' },
 			{ name: 'Name', field: 'name'},
 			{ name: 'Email', field: 'email'},
-			{ name: 'Date Applied', field: 'date_registered', cellFilter: "date: 'MMM dd, yyyy'", width: 150 },
-			{ name: 'Image',  cellTemplate: cellTemplate4, width: 100},
-			{ name: 'Action', cellTemplate: cellTemplate3, width: 200},
 		],
 		data: 'vm.filtered',
+        onRegisterApi: function (gridApi) {
+            gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                vm.variables.id = row.entity.id;
+                vm.getTransaction();
+            });
+        }
 	};
+    vm.transactionGrid = {
+        enableRowSelection: false,
+		enableCellEdit: false,
+		enableColumnMenus: false,
+		modifierKeysToMultiSelect: true,
+		enableRowHeaderSelection: false,
+		columnDefs: [
+			{ name: 'Transaction Type', displayName: 'Transaction Type', field: 'transaction_type' },
+			{ name: 'Amount', field: 'amount'},
+			{ name: 'Date Approved', field: 'date_approved'},
+		],
+		data: 'vm.filteredTransaction',
+        
+    }
     vm.getAccounts = function (data) {
         vm.list = [];
         vm.filtered = [];
@@ -57,6 +69,22 @@ function TransactionCtrl($scope, $ocLazyLoad, $injector, filter) {
             }
             vm.filtered = vm.list;
 		});
+    }
+    vm.getTransaction = function () {
+        vm.listTransaction = [];
+        vm.filteredTransaction = [];
+        let data = angular.copy(vm.variables);
+        data.dateFrom = TransactionSvc.getDate(vm.variables.dateFrom);
+        data.dateTo = TransactionSvc.getDate(vm.variables.dateTo);
+        console.log(data);
+        // TransactionSvc.get({}).then(function(response) {
+        //     if(!response){
+        //         vm.listTransaction = [];
+        //     }else{
+        //         vm.listTransaction = response;
+        //     }
+        //     vm.filteredTransaction = vm.listTransaction;
+        // });
     }
     vm.searching = function (type) {
         vm.filtered = filter('filter')(vm.list, { searchList: vm.search });

@@ -1,8 +1,32 @@
-<div>
+<div ng-controller="TransactionCtrl as vm">
     <div class="bg-light w-100">
         <div class="p-2">
             <h2 class="font-weight-bolder">Welcome to USTP CDO Multi-Cooperative Web Portal</h2>
             <h4 class="mb-0"><i>Transaction List</i></h4>
+        </div>
+    </div>
+    <div class="d-flex p-2">
+        <div class="col-md-6">
+            <div class="d-flex align-items-center retain-row justify-content-between mb-1">
+                <div class="col-md-6 px-0">
+                    <h4 class="mb-0">Client List</h4>
+                </div>
+                <div class="col-md-6 text-right px-0">
+                    <input type="text" class="form-control" ng-model="vm.search" placeholder="Search" ng-change="vm.searching()">
+                </div>
+            </div>
+            <div ui-grid="vm.userGrid" ui-grid-selection ui-grid-resize-columns></div>
+        </div>
+        <div class="col-md-6">
+            <div class="d-flex mb-1">
+                <h4 class="text-nowrap mb-0 mr-2">Transaction List</h4>
+                <div class="d-flex w-100 retain-row">
+                    <input type="date" class="form-control mr-1" ng-model="vm.variables.dateFrom" >
+                    <input type="date" class="form-control mr-1" ng-model="vm.variables.dateTo" >
+                    <button type="button" class="btn">Go</button>
+                </div>
+            </div>
+            <div ui-grid="vm.transactionGrid" ui-grid-selection ui-grid-resize-columns></div>
         </div>
     </div>
 </div>

@@ -153,7 +153,7 @@ body {
         width: 100% !important;
         margin-top: 0 !important;
         top: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) !important;
     }
     #video1{
         width: 100%;
@@ -388,6 +388,10 @@ body {
 .p-5{
     padding: 5rem;
 }
+.px-0{
+    padding-left: 0;
+    padding-right: 0;
+}
 .px-1{
     padding-left: 1rem;
     padding-right: 1rem;
@@ -407,6 +411,10 @@ body {
 .px-5{
     padding-left: 5rem;
     padding-right: 5rem;
+}
+.py-0{
+    padding-top: 0;
+    padding-bottom: 0;
 }
 .py-1{
     padding-top: 1rem;

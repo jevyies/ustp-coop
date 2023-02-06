@@ -49,7 +49,7 @@ function TransactionCtrl($scope, $ocLazyLoad, $injector, filter) {
 		columnDefs: [
 			{ name: 'Transaction Type', displayName: 'Transaction Type', field: 'transaction_type' },
 			{ name: 'Amount', field: 'amount'},
-			{ name: 'Date Approved', field: 'date_approved'},
+			{ name: 'Date Approved', field: 'date_approved', cellFilter: "date: 'MMMM dd, yyyy'"},
 		],
 		data: 'vm.filteredTransaction',
         
@@ -57,6 +57,7 @@ function TransactionCtrl($scope, $ocLazyLoad, $injector, filter) {
     vm.getAccounts = function (data) {
         vm.list = [];
         vm.filtered = [];
+        vm.loadingUsers = true;
         AccountDetailSvc.get(data).then(function(response) {
             if(!response){
                 vm.list = [];
@@ -68,6 +69,7 @@ function TransactionCtrl($scope, $ocLazyLoad, $injector, filter) {
                 vm.list = response;
             }
             vm.filtered = vm.list;
+            vm.loadingUsers = false;
 		});
     }
     vm.getTransaction = function () {
@@ -82,6 +84,7 @@ function TransactionCtrl($scope, $ocLazyLoad, $injector, filter) {
         data.purpose = 'get_transaction_by_user';
         delete data.dateFrom;
         delete data.dateTo;
+        vm.loadinTransaction = true;
         TransactionSvc.get(data).then(function(response) {
             if(!response){
                 vm.listTransaction = [];
@@ -92,6 +95,7 @@ function TransactionCtrl($scope, $ocLazyLoad, $injector, filter) {
                 vm.listTransaction = response;
             }
             vm.filteredTransaction = vm.listTransaction;
+            vm.loadinTransaction = false;
         });
     }
     vm.searching = function (type) {

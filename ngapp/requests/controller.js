@@ -18,6 +18,9 @@ function RequestCtrl($scope, $ocLazyLoad, $injector, filter) {
 	});
 	vm.getTransactions = function(params) {
 		params.purpose = 'unite_transaction';
+		vm.loading = true;
+		vm.requestList = [];
+		vm.filtered = [];
 		TransactionSvc.get(params).then(function(d) {
 			d.map(function(item) {
 				item.amount = filter('currency')(item.total_amount, '₱ ');
@@ -26,6 +29,7 @@ function RequestCtrl($scope, $ocLazyLoad, $injector, filter) {
 			});
 			vm.requestList = d;
 			vm.filtered = vm.requestList;
+			vm.loading = false;
 		});
 	}
 	vm.queryDate = function() {

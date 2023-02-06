@@ -15,7 +15,10 @@
                     <input type="text" class="form-control" ng-model="vm.search" placeholder="Search" ng-change="vm.searching()">
                 </div>
             </div>
-            <div ui-grid="vm.userGrid" ui-grid-selection ui-grid-resize-columns></div>
+            <div ui-grid="vm.userGrid" ui-grid-selection ui-grid-resize-columns class="position-relative">
+                <div class="ui-grid-center-panel" ng-show="vm.filtered.length == 0 && !vm.loadingUsers">No data found</div>
+                <div class="ui-grid-center-panel" ng-show="vm.loadingUsers">Loading...</div>
+            </div>
         </div>
         <div class="col-md-6">
             <div class="d-flex mb-1">
@@ -26,7 +29,10 @@
                     <button type="button" class="btn" ng-click="vm.getTransaction()">Go</button>
                 </div>
             </div>
-            <div ui-grid="vm.transactionGrid" ui-grid-selection ui-grid-resize-columns></div>
+            <div ui-grid="vm.transactionGrid" ui-grid-selection ui-grid-resize-columns class="position-relative">
+                <div class="ui-grid-center-panel" ng-show="vm.filteredTransaction.length == 0 && !vm.loadinTransaction">No data found</div>
+                <div class="ui-grid-center-panel" ng-show="vm.loadinTransaction">Loading...</div>
+            </div>
         </div>
     </div>
 </div>

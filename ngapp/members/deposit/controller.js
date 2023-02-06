@@ -16,7 +16,7 @@ function DepositCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
         let data = angular.copy(vm.variables);
         data.total_amount = DepositSvc.getAmount(vm.variables.totalAmt);
         data.image = vm.imageUrl.replace(/^data:image\/[a-z]+;base64,/, "");
-        data.account_id = account.id;
+        data.account = account.id;
         data.purpose = 'request_deposit';
         DepositSvc.save(data).then(function (res) {
             if(res.data.id){

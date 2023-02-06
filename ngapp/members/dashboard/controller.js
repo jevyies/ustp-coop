@@ -20,6 +20,7 @@ function MemberDashboardCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
 		columnDefs: [
 			{ name: 'Transaction Type', displayName: 'Transaction Type', field: 'type' },
 			{ name: 'Amount', field: 'amount'},
+			{ name: 'Date Requested', field: 'date_requested', cellFilter: "date: 'MMMM dd, yyyy'"},
 			{ name: 'Date Approved', field: 'date_approved', cellFilter: "date: 'MMMM dd, yyyy'"},
 			{ name: 'Status', field: 'statusUC', cellClass: 'text-center'},
 		],
@@ -39,6 +40,7 @@ function MemberDashboardCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
         data.to = TransactionSvc.getDate(vm.variables.to);
         data.purpose = 'get_my_transaction';
         data.id = account.id;
+        vm.loading = true;
         TransactionSvc.get(data).then(function(response) {
             if(!response){
                 vm.listTransaction = [];
@@ -51,7 +53,7 @@ function MemberDashboardCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
                 vm.listTransaction = response;
             }
             vm.filteredTransaction = vm.listTransaction;
-            console.log(vm.filteredTransaction);
+            vm.loading = false;
         });
     }
 }

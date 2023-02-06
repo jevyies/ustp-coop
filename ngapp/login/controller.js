@@ -39,7 +39,9 @@ function LoginCtrl($scope, $ocLazyLoad, $injector, $state) {
                     return AccountSvc.showAlert('Error', 'Account is not yet valid', 'error');
                 }else{
                     response.data.as = data.type;
-                    localStorage.setItem('credentials', JSON.stringify(response.data));
+                    let credentials = angular.copy(response.data)
+                    delete credentials.password;
+                    localStorage.setItem('credentials', JSON.stringify(credentials));
                     AccountSvc.showToaster('Success', 'Successfully login', 'success');
                     if(data.type == 'admin'){
                         return $state.go('app.main');

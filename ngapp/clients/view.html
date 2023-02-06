@@ -11,6 +11,9 @@
                 <input type="text" class="form-control mr-2" ng-model="vm.search" placeholder="Search Client" ng-change="vm.searching()">
             </div>  
         </div>
-        <div ui-grid="vm.defaultGrid" ui-grid-selection ui-grid-resize-columns></div>
+        <div ui-grid="vm.defaultGrid" ui-grid-selection ui-grid-resize-columns class="position-relative">
+            <div class="ui-grid-center-panel" ng-show="vm.filtered.length == 0 && !vm.loading">No data found</div>
+            <div class="ui-grid-center-panel" ng-show="vm.loading">Loading...</div>
+        </div>
     </div>
 </div>

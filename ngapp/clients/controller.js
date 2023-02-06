@@ -40,6 +40,7 @@ function ClientCtrl($scope, $ocLazyLoad, $injector, filter) {
     vm.getAccounts = function (data) {
         vm.list = [];
         vm.filtered = [];
+        vm.loading = true;
         AccountDetailSvc.get(data).then(function(response) {
             if(!response){
                 vm.list = [];
@@ -51,6 +52,7 @@ function ClientCtrl($scope, $ocLazyLoad, $injector, filter) {
                 vm.list = response;
             }
             vm.filtered = vm.list;
+            vm.loading = false;
 		});
     }
     vm.searching = function (type) {

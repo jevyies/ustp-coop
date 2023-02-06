@@ -52,16 +52,18 @@ function WithdrawalCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
         });
         let account = JSON.parse(localStorage.getItem('credentials'));
         let data = angular.copy(vm.variables);
-        data.account_id = account.id;
+        data.account = account.id;
         data.total_amount = WithdrawSvc.getAmount(vm.variables.totalAmt);
         data.image = canvas.toDataURL("image/jpg").replace(/^data:image\/[a-z]+;base64,/, "");
         data.purpose = 'request_withdrawal';
         WithdrawSvc.save(data).then(function (res) {
-            if(!res.data.success){
-                return WithdrawSvc.showAlert('Verification Error', res.data.message, 'error')
-            }
-            if(res.data.id){
-                return vm.successfulWithdrawal = true;
+            if(res.data){
+                if(res.data.success){
+                    return vm.successfulWithdrawal = true;
+                }else{
+                    vm.startVideo();
+                    return WithdrawSvc.showAlert('Verification Error', res.data.message, 'error')
+                }
             }
             return WithdrawSvc.showAlert('Error', 'Something went wrong', 'error')
         });

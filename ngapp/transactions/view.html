@@ -23,7 +23,7 @@
                 <div class="d-flex w-100 retain-row">
                     <input type="date" class="form-control mr-1" ng-model="vm.variables.dateFrom" >
                     <input type="date" class="form-control mr-1" ng-model="vm.variables.dateTo" >
-                    <button type="button" class="btn">Go</button>
+                    <button type="button" class="btn" ng-click="vm.getTransaction()">Go</button>
                 </div>
             </div>
             <div ui-grid="vm.transactionGrid" ui-grid-selection ui-grid-resize-columns></div>

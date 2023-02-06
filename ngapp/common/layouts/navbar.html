@@ -5,26 +5,34 @@
 				<img src="assets/images/coop-logo.png" alt="" class="sub-logo">
 			</div>
 			<ul class="nav navbar-top-links d-flex gap-20 align-items-center">
-				<li>
-					<a ui-sref="app.home" href="javascript:void(0);">
+				<li ng-if="vm.profile.as === 'member'">
+					<a ui-sref="member.main" href="javascript:void(0);">
 						<div class="d-flex align-items-end">
 							<span class="text-black font-size-18 font-weight-bolder mobile-no-display mr-1">Home</span>
 							<i class="fa-solid fa-home font-size-28 text-black"></i>
 						</div>
 					</a>
 				</li>
-				<li>
+				<li ng-if="vm.profile.as === 'admin'">
+					<a ui-sref="app.main" href="javascript:void(0);">
+						<div class="d-flex align-items-end">
+							<span class="text-black font-size-18 font-weight-bolder mobile-no-display mr-1">Home</span>
+							<i class="fa-solid fa-home font-size-28 text-black"></i>
+						</div>
+					</a>
+				</li>
+				<!-- <li>
 					<a ui-sref="app.home" href="javascript:void(0);">
 						<div class="d-flex align-items-end">
 							<span class="text-black font-size-18 font-weight-bolder nowrap mobile-no-display mr-1">About Us</span>
 							<i class="fa-solid fa-address-card font-size-28 text-black"></i>
 						</div>
 					</a>
-				</li>
+				</li> -->
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);">
 						<div class="d-flex align-items-end">
-							<span class="text-black font-size-18 font-weight-bolder mobile-no-display mr-1">Profile</span>
+							<span class="text-black font-size-18 font-weight-bolder mobile-no-display mr-1">{{vm.profile.name}}</span>
 							<svg width="30" height="30" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<g clip-path="url(#clip0_19_20)">
 								<path d="M198 149.5L165 194.5L150 173.5L135 194.5L102 149.5C45 164.5 45 194.5 45 253C45 253 90 269.5 141 269.5H159C210 268 255 253 255 253C255 194.5 255 164.5 198 149.5ZM150 160L126 149.5L150 173.5L174 149.5L150 160ZM150 31C121.5 31 105 58 109.5 88C114 118 129 139 150 139C171 139 186 118 190.5 88C195 56.5 178.5 31 150 31Z" fill="black"/>

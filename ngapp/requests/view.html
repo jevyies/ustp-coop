@@ -7,16 +7,24 @@
     </div>
     <div class="p-2">
         <div class="row mb-1">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <input type="text" class="form-control" ng-model="vm.search" placeholder="Search Client" ng-change="vm.searching()">
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-2">
+                <select class="form-control" ng-model="vm.options" ng-change="vm.searchOptions(vm.options)">
+                    <option value="all">All</option>
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                    <option value="denied">Denied</option>
+                </select>
+            </div>
+            <div class="col-md-2"></div>
             <div class="col-md-6">
                 <div class="d-flex w-100 retain-row align-items-center">
                     <h4 class="text-nowrap my-0 mr-1">Filters:</h4>
                     <input type="date" class="form-control mr-1" ng-model="vm.variables.dateFrom" >
                     <input type="date" class="form-control mr-1" ng-model="vm.variables.dateTo" >
-                    <button type="button" class="btn">Go</button>
+                    <button type="button" class="btn" ng-click="vm.queryDate()">Go</button>
                 </div>
             </div>
         </div>

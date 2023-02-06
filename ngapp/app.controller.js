@@ -6,6 +6,7 @@ function AppCtrl($scope, $ocLazyLoad, $injector, $state) {
 	var vm = this;
 	vm.masterfile = false;
 	vm.userName = '';
+	vm.profile = JSON.parse(localStorage.getItem('credentials'));
 	$ocLazyLoad.load([APPURL + 'app.service.js?v=' + VERSION]).then(function(d) {
 		AccountSvc = $injector.get('AccountSvc');
 	});
@@ -23,7 +24,7 @@ function AppCtrl($scope, $ocLazyLoad, $injector, $state) {
 	}
 	vm.changePassword = function(){
 		var options = {
-			data: vm.userCredentials,
+			data: vm.profile,
 			templateUrl: COMURL + 'user_details/change_password.html?v=' + VERSION,
 			controllerName: 'ChangePasswordCtrl',
 			viewSize: 'sm',
@@ -39,8 +40,26 @@ function AppCtrl($scope, $ocLazyLoad, $injector, $state) {
 			}
 		});
 	}
+	vm.userPane = function() {
+		var options = {
+			data: vm.profile,
+			templateUrl: COMURL + 'user_details/view.html?v=' + VERSION,
+			controllerName: 'UserDetailsCtrl',
+			viewSize: 'md',
+			animation: true,
+			filesToLoad: [
+				COMURL + 'user_details/view.html?v=' + VERSION,
+				COMURL + 'user_details/controller.js?v=' + VERSION,
+			],
+		};
+		AccountSvc.modal(options).then(function(data) {
+			if (data) {
+				vm.logout();
+			}
+		});
+	};
 	vm.logout = function() {
-		localStorage.removeItem('credentials');
+		localStorage.clear();
 		$state.go('login');
 	};
 }

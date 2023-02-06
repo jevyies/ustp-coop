@@ -71,20 +71,28 @@ function TransactionCtrl($scope, $ocLazyLoad, $injector, filter) {
 		});
     }
     vm.getTransaction = function () {
+        if(!vm.variables.id){
+            return;
+        }
         vm.listTransaction = [];
         vm.filteredTransaction = [];
         let data = angular.copy(vm.variables);
-        data.dateFrom = TransactionSvc.getDate(vm.variables.dateFrom);
-        data.dateTo = TransactionSvc.getDate(vm.variables.dateTo);
-        console.log(data);
-        // TransactionSvc.get({}).then(function(response) {
-        //     if(!response){
-        //         vm.listTransaction = [];
-        //     }else{
-        //         vm.listTransaction = response;
-        //     }
-        //     vm.filteredTransaction = vm.listTransaction;
-        // });
+        data.from = TransactionSvc.getDate(vm.variables.dateFrom);
+        data.to = TransactionSvc.getDate(vm.variables.dateTo);
+        data.purpose = 'get_transaction_by_user';
+        delete data.dateFrom;
+        delete data.dateTo;
+        TransactionSvc.get(data).then(function(response) {
+            if(!response){
+                vm.listTransaction = [];
+            }else{
+                response.map(function (d) {
+                    d.amount = filter('currency')(d.total_amount, '₱ ');
+                });
+                vm.listTransaction = response;
+            }
+            vm.filteredTransaction = vm.listTransaction;
+        });
     }
     vm.searching = function (type) {
         vm.filtered = filter('filter')(vm.list, { searchList: vm.search });

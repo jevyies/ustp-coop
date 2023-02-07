@@ -1,5 +1,5 @@
 // const APIURL = 'http://localhost:9000/';
-const APIURL = 'http://139.59.237.248:9000/';
+const APIURL = 'http://139.59.239.49/';
 const APPURL = 'ngapp/';
 const VERSION = '1.0.0';
 const COMURL = APPURL + 'common/';

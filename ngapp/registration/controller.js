@@ -61,6 +61,9 @@ function RegistrationCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
             if(response.data.email_exists){
                 return AccountSvc.showAlert('Error', 'Email already exists', 'error');
             }
+            if(response.data.account_exists){   
+                return AccountSvc.showAlert('Error', 'This account number is already registered', 'error');
+            }
             vm.successfulRegistration = true;
         });
     }

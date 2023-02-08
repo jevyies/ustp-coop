@@ -11,6 +11,8 @@ function WithdrawalCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
     vm.successfulWithdrawal = false;
     vm.accountBalance = 0;
     vm.profile = JSON.parse(localStorage.getItem('credentials'));
+    vm.saving = false;
+    vm.saveCount = 0;
     $ocLazyLoad.load([APPURL + 'app.service.js?v=' + VERSION]).then(function (d) {
         WithdrawSvc = $injector.get('WithdrawSvc');
         AccountSvc = $injector.get('AccountSvc');
@@ -60,11 +62,14 @@ function WithdrawalCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
             canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
             faceapi.draw.drawDetections(canvas, resizedDetections)
             if(resizedDetections.length > 0){
-                vm.saveWithdrawal();
+                if(!vm.saving){
+                    vm.saveWithdrawal();
+                }
             }
         }, 1500)
     });
-    vm.saveWithdrawal = function(){
+    vm.saveWithdrawal = async function(){
+        vm.saving = true;
         let canvas = document.querySelector("#capturedImg");
         canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
         video.srcObject.getTracks().forEach(function(track) {
@@ -79,10 +84,21 @@ function WithdrawalCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
         WithdrawSvc.save(data).then(function (res) {
             if(res.data){
                 if(res.data.success){
+                    vm.saving = false;
                     return vm.successfulWithdrawal = true;
                 }else{
+                    clearInterval(interValId);
+                    interValId = null;
+                    const recanvas = document.getElementById('canvas1');
+                    recanvas && recanvas.remove();
+                    vm.saving = false;
+                    if(vm.saveCount > 2){
+                        vm.closeAll();
+                        return WithdrawSvc.showAlert('Error', 'Face Verification Failed. Try again later', 'error');
+                    }
                     return WithdrawSvc.confirmation('Verification Error!', `You want to retry?`, 'Yes', 'Cancel', false).then(function (modal) {
                         if(modal){
+                            vm.saveCount++;
                             return vm.startVideo();
                         }else{
                             return vm.closeAll();
@@ -90,6 +106,8 @@ function WithdrawalCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
                     });
                 }
             }
+            vm.saving = false;
+            vm.saveCount = 0;
             return WithdrawSvc.showAlert('Error', 'Something went wrong', 'error')
         });
     }
@@ -102,6 +120,8 @@ function WithdrawalCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
         recanvas && recanvas.remove();
         vm.variables = {};
         vm.successfulWithdrawal = false;
+        vm.saveCount = 0;
+        vm.cameraOpened = false;
     }
 
     vm.closeCamera = function () {
@@ -113,5 +133,6 @@ function WithdrawalCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
         interValId = null;
         const recanvas = document.getElementById('canvas1');
         recanvas && recanvas.remove();
+        vm.saveCount = 0;
     }
 }

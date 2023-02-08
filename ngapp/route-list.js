@@ -18,6 +18,14 @@ const ROUTES = [
 		}
 	},
 	{
+		'about-us': {
+			url: '/about-us',
+			templateUrl: ABOUTURL + 'view.html?v=' + VERSION,
+			requireLogin: false,
+			loginAs: 'public',
+		}
+	},
+	{
 		'login': {
 			url: '/login',
 			templateUrl: LOGURL + 'view.html?v=' + VERSION,

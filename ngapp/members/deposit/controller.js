@@ -8,9 +8,11 @@ function DepositCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
     vm.imageUrl = '';
     vm.successfulDeposit = false;
     vm.accountBalance = 0;
+    vm.profile = JSON.parse(localStorage.getItem('credentials'));
     $ocLazyLoad.load([APPURL + 'app.service.js?v=' + VERSION]).then(function (d) {
         DepositSvc = $injector.get('DepositSvc');
         AccountSvc = $injector.get('AccountSvc');
+        vm.dateNow = filter('date')(new Date(), 'mediumDate');
         vm.getAccountBalance();
     });
     

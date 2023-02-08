@@ -12,6 +12,14 @@
                 <div class="w-60 p-3">
                     <form ng-submit="vm.submit()">
                         <div class="bg-brownie p-1">
+                            <div class="mb-2 mt-2 d-flex align-items-center">
+                                <label for="name" class="text-nowrap mr-2">Account No: <span class="font-weight-bolder"></label>
+                                <input type="text" class="form-control form-control-lg" value="{{vm.profile.account_no}}" disabled>
+                            </div>
+                            <div class="mb-2 mt-2 d-flex align-items-center">
+                                <label for="name" class="mr-2">Date: <span class="font-weight-bolder"></label>
+                                <input type="text" class="form-control form-control-lg" value="{{vm.dateNow}}" disabled>
+                            </div>
                             <div class="mb-2">
                                 <label for="name">Total Amount:</label>
                                 <div class="d-flex">

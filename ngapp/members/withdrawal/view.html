@@ -12,11 +12,13 @@
                 <div class="w-60 p-3">
                     <form ng-submit="vm.openCamera()">
                         <div class="bg-brownie p-1">
-                            <div class="mb-3 mt-2">
-                                <label for="name">Account No: <span class="font-weight-bolder"><u><i>{{vm.profile.account_no }}</i></u></span></label>
+                            <div class="mb-3 mt-2 d-flex align-items-center">
+                                <label for="name" class="text-nowrap mr-2">Account No: <span class="font-weight-bolder"></label>
+                                <input type="text" class="form-control form-control-lg" value="{{vm.profile.account_no}}" disabled>
                             </div>
-                            <div class="mb-3 mt-2">
-                                <label for="name">Date: <span class="font-weight-bolder"><u><i>{{vm.dateNow }}</i></u></span></label>
+                            <div class="mb-3 mt-2 d-flex align-items-center">
+                                <label for="name" class="mr-2">Date: <span class="font-weight-bolder"></label>
+                                <input type="text" class="form-control form-control-lg" value="{{vm.dateNow}}" disabled>
                             </div>
                             <div class="mb-3 mt-2">
                                 <label for="name">Total Amount:</label>

@@ -1,9 +1,11 @@
 angular.module('app')
     .controller('ClientCtrl', ClientCtrl)
     .controller('UpdateClientCtrl', UpdateClientCtrl)
+    .controller('ViewBalanceCtrl', ViewBalanceCtrl)
 
 ClientCtrl.$inject = ['$scope', '$ocLazyLoad', '$injector', '$filter'];
 UpdateClientCtrl.$inject = ['$scope', '$ocLazyLoad', '$injector', 'data', '$uibModalInstance'];
+ViewBalanceCtrl.$inject = ['$scope', '$ocLazyLoad', '$injector', 'data', '$uibModalInstance'];
 
 function ClientCtrl($scope, $ocLazyLoad, $injector, filter) {
     var vm = this;
@@ -17,7 +19,10 @@ function ClientCtrl($scope, $ocLazyLoad, $injector, filter) {
     vm.search = '';
     vm.variables = {};
     var cellTemplate1 =
-		'<div class="text-center cursor-pointer ui-grid-icons-and-icons" ng-click="grid.appScope.vm.update(row.entity)"><span class="fa fa-edit text-success font-size-16"></span></div>';
+		`<div class="text-center cursor-pointer ui-grid-icons-and-icons">
+            <span class="fa fa-edit text-success font-size-16 mr-2" ng-click="grid.appScope.vm.update(row.entity)"></span>
+            <a href="javascript:void(0);" class="font-size-16" ng-click="grid.appScope.vm.viewBalance(row.entity)">View Balance</a>
+        </div>`;
 	var cellTemplate2 =
 		'<div class="text-center cursor-pointer ui-grid-icons-and-icons" ng-click="grid.appScope.vm.delete(row.entity)"><span class="fa fa-trash text-danger font-size-16"></span></div>';
 	vm.defaultGrid = {
@@ -32,7 +37,7 @@ function ClientCtrl($scope, $ocLazyLoad, $injector, filter) {
 			{ name: 'Email', field: 'email'},
 			{ name: 'Date Applied', field: 'date_registered', cellFilter: "date: 'MMM dd, yyyy'", width: 150 },
 			{ name: 'Date Verified', field: 'date_approved', cellFilter: "date: 'MMM dd, yyyy'", width: 150 },
-			{ name: '  ', cellTemplate: cellTemplate1, width: 20 },
+			{ name: '  ', cellTemplate: cellTemplate1, width: 180 },
 			// { name: ' ', cellTemplate: cellTemplate2, width: 20 },
 		],
 		data: 'vm.filtered',
@@ -93,6 +98,28 @@ function ClientCtrl($scope, $ocLazyLoad, $injector, filter) {
             }
         })
     }
+    vm.viewBalance = function(data){
+        AccountSvc.get({purpose: 'get_balance', id: data.id}).then(function(response){
+			if(response){
+                console.log(response)
+                var options = {
+                    data: response,
+                    templateUrl: APPURL + "clients/view-balance.html?v=" + VERSION,
+                    controllerName: "ViewBalanceCtrl",
+                    controllerAs: 'modal',
+                    viewSize: 'md',
+                    animation: true,
+                    filesToLoad: [
+                        APPURL + "clients/view-balance.html?v=" + VERSION,
+                        APPURL + "clients/controller.js?v=" + VERSION
+                    ]
+                };
+                AccountSvc.modal(options);
+            }else{
+                AccountSvc.showAlert('Failed!', 'Something went wrong', 'error');
+            }
+        })
+    }
 }
 function UpdateClientCtrl($scope, $ocLazyLoad, $injector, data, $uibModalInstance) {
     var modal = this;
@@ -110,6 +137,13 @@ function UpdateClientCtrl($scope, $ocLazyLoad, $injector, data, $uibModalInstanc
             }
         })
     }
+    modal.close = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+}
+function ViewBalanceCtrl($scope, $ocLazyLoad, $injector, data, $uibModalInstance) {
+    var modal = this;
+    modal.variables = data;
     modal.close = function () {
         $uibModalInstance.dismiss('cancel');
     };

@@ -1,0 +1,29 @@
+<div class="modal-content">
+    <div class="container-fluid">
+        <div class="row modal-title-div">
+            <div class="col-md-12">
+                <span ng-click="modal.close()" class="cursor-pointer modal-exit">&times;</span>
+                <h4 class="modal-title-name">
+                    View Balance</h4>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="mb-2">
+            <label for="Deposit" class="font-size-14">Deposit</label>
+            <input type="text" class="form-control text-brown" ng-model="modal.variables.deposit" disabled only-numbers-wo-negative>
+        </div>
+        <div class="mb-2">
+            <label for="Withdrawal" class="font-size-14">Withdrawal</label>
+            <input type="text" class="form-control text-brown" ng-model="modal.variables.withdrawal" disabled only-numbers-wo-negative>
+        </div>
+        <div class="mb-2">
+            <label for="Balance" class="font-size-14">Balance</label>
+            <input type="text" class="form-control text-brown" ng-model="modal.variables.balance" disabled only-numbers-wo-negative>
+        </div>
+        
+        <div class="text-right">
+            <button type="button" class="btn btn-clear font-size-14" ng-click="modal.close()">Close</button>
+        </div>
+    </div>
+</div>

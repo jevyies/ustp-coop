@@ -88,7 +88,6 @@ function ClientCtrl($scope, $ocLazyLoad, $injector, filter) {
     vm.delete = function(data){
         let index = vm.list.indexOf(data);
         AccountSvc.delete(data.id).then(function (response) {
-            console.log(response);
             if (response) {
                 vm.list.splice(index, 1);
                 vm.filtered = vm.list;

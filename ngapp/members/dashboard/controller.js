@@ -11,6 +11,12 @@ function MemberDashboardCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
     vm.listTransaction = [];
     vm.filteredTransaction = [];
     vm.accountBalance = 0;
+    $ocLazyLoad.load([APPURL + 'app.service.js?v=' + VERSION]).then(function (d) {
+        TransactionSvc = $injector.get('TransactionSvc');
+        AccountSvc = $injector.get('AccountSvc');
+        vm.getTransactions();
+        vm.getAccountBalance();
+    });
     vm.transactionGrid = {
         enableRowSelection: false,
 		enableCellEdit: false,
@@ -27,20 +33,16 @@ function MemberDashboardCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
 		data: 'vm.filteredTransaction',
         
     }
-    $ocLazyLoad.load([APPURL + 'app.service.js?v=' + VERSION]).then(function (d) {
-        TransactionSvc = $injector.get('TransactionSvc');
-        AccountSvc = $injector.get('AccountSvc');
-        vm.getTransactions();
-        vm.getAccountBalance();
-    });
     vm.getAccountBalance = function(){
         var account = JSON.parse(localStorage.getItem('credentials'));
         vm.accountBalance = 0;
+        LOADING.classList.add('open');
 		AccountSvc.get({purpose: 'get_balance', id: account.id}).then(function(response){
 			if(response){
 				vm.accountBalance = response.balance;
                 vm.balance = filter('currency')(vm.accountBalance, '₱ ');
 			}
+            LOADING.classList.remove('open');
 		});
 	}
     vm.getTransactions = function () {

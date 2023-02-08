@@ -20,11 +20,13 @@ function WithdrawalCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
     vm.getAccountBalance = function(){
         var account = JSON.parse(localStorage.getItem('credentials'));
         vm.accountBalance = 0;
+        LOADING.classList.add('open');
 		AccountSvc.get({purpose: 'get_balance', id: account.id}).then(function(response){
 			if(response){
 				vm.accountBalance = response.balance;
                 vm.balance = filter('currency')(vm.accountBalance, '₱ ');
 			}
+            LOADING.classList.remove('open');
 		});
 	}
     vm.openCamera = async function () {
@@ -60,7 +62,7 @@ function WithdrawalCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
             if(resizedDetections.length > 0){
                 vm.saveWithdrawal();
             }
-        }, 3000)
+        }, 1500)
     });
     vm.saveWithdrawal = function(){
         let canvas = document.querySelector("#capturedImg");
@@ -79,8 +81,13 @@ function WithdrawalCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
                 if(res.data.success){
                     return vm.successfulWithdrawal = true;
                 }else{
-                    vm.startVideo();
-                    return WithdrawSvc.showAlert('Verification Error', res.data.message, 'error')
+                    return WithdrawSvc.confirmation('Verification Error!', `You want to retry?`, 'Yes', 'Cancel', false).then(function (modal) {
+                        if(modal){
+                            return vm.startVideo();
+                        }else{
+                            return vm.closeAll();
+                        }
+                    });
                 }
             }
             return WithdrawSvc.showAlert('Error', 'Something went wrong', 'error')

@@ -19,11 +19,13 @@ function DepositCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
 	vm.getAccountBalance = function(){
         var account = JSON.parse(localStorage.getItem('credentials'));
         vm.accountBalance = 0;
+        LOADING.classList.add('open');
 		AccountSvc.get({purpose: 'get_balance', id: account.id}).then(function(response){
 			if(response){
 				vm.accountBalance = response.balance;
                 vm.balance = filter('currency')(vm.accountBalance, '₱ ');
 			}
+            LOADING.classList.remove('open');
 		});
 	}
     vm.submit = function(){

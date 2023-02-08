@@ -3,18 +3,13 @@
     <div class="bg-light px-3 py-2">
         <h2 class="font-weight-bolder">Welcome to USTP CDO Multi-Cooperative Web Portal</h2>
         <p class="font-weight-bolder mt-3 font-size-20">My Requests</p>
-        <div class="bg-blue blue-content p-2">
-            <div class="row">
-                <div class="col-md-7"></div>
-                <div class="col-md-5">
-                    <div class="d-flex mb-1">
-                        <h4 class="text-nowrap mb-0 mr-2 text-white">Filter:</h4>
-                        <div class="d-flex w-100 retain-row">
-                            <input type="date" class="form-control mr-1" ng-model="vm.variables.from" >
-                            <input type="date" class="form-control mr-1" ng-model="vm.variables.to" >
-                            <button type="button" class="btn" ng-click="vm.getTransactions()">Go</button>
-                        </div>
-                    </div>
+        <div class="bg-blue p-2">
+            <div class="d-flex retain-row-136 mb-1 justify-content-end">
+                <h4 class="text-nowrap mb-0 mr-2 text-white">Filter:</h4>
+                <div class="d-flex retain-row-136 retain-row">
+                    <input type="date" class="form-control mr-1" ng-model="vm.variables.from" >
+                    <input type="date" class="form-control mr-1" ng-model="vm.variables.to" >
+                    <button type="button" class="btn" ng-click="vm.getTransactions()">Go</button>
                 </div>
             </div>
             <div ui-grid="vm.transactionGrid" ui-grid-selection ui-grid-resize-columns class="position-relative">

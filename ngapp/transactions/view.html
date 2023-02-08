@@ -6,8 +6,8 @@
         </div>
     </div>
     <div class="d-flex p-2">
-        <div class="col-md-6">
-            <div class="d-flex align-items-center retain-row justify-content-between mb-1">
+        <div class="col-md-6 w-100-136">
+            <div class="d-flex align-items-center retain-row justify-content-between mb-1 retain-row-136">
                 <div class="col-md-6 px-0">
                     <h4 class="mb-0">Client List</h4>
                 </div>
@@ -15,15 +15,15 @@
                     <input type="text" class="form-control" ng-model="vm.search" placeholder="Search" ng-change="vm.searching()">
                 </div>
             </div>
-            <div ui-grid="vm.userGrid" ui-grid-selection ui-grid-resize-columns class="position-relative">
+            <div ui-grid="vm.userGrid" ui-grid-selection ui-grid-resize-columns class="position-relative mb-2">
                 <div class="ui-grid-center-panel" ng-show="vm.filtered.length == 0 && !vm.loadingUsers">No data found</div>
                 <div class="ui-grid-center-panel" ng-show="vm.loadingUsers">Loading...</div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="d-flex mb-1">
+        <div class="col-md-6 w-100-136">
+            <div class="d-flex retain-row-136 mb-1">
                 <h4 class="text-nowrap mb-0 mr-2">Transaction List</h4>
-                <div class="d-flex w-100 retain-row">
+                <div class="d-flex retain-row-136 w-100 retain-row">
                     <input type="date" class="form-control mr-1" ng-model="vm.variables.dateFrom" >
                     <input type="date" class="form-control mr-1" ng-model="vm.variables.dateTo" >
                     <button type="button" class="btn" ng-click="vm.getTransaction()">Go</button>

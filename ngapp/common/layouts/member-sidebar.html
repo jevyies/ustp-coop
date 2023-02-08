@@ -1,0 +1,53 @@
+<div class="navbar-default sidebar h-100 member-sidebar" role="navigation">
+	<div class="sidebar-nav">
+		<ul class="nav w-100 pl-5" id="side-menu">
+			<li ui-sref-active="selected">
+				<a ui-sref="member.main">
+						<i class="fa-solid fa-bars"></i> &nbsp; Dashboard
+				</a>
+			</li>
+			<li ui-sref-active="selected">
+				<a ui-sref="member.loan-application">
+						<i class="fa-solid fa-layer-group"></i> &nbsp; Loan Application
+				</a>
+			</li>
+			<li ui-sref-active="selected">
+				<a ui-sref="member.deposit">
+						<i class="fa-solid fa-arrow-right-arrow-left"></i> &nbsp; Deposit
+				</a>
+			</li>
+			<li ui-sref-active="selected">
+				<a ui-sref="member.withdrawal">
+						<i class="fa-solid fa-server"></i> &nbsp; Withdrawal
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="sidebar-mobile position-fixed h-100vh">
+	<div class="sidebar-nav bg-grey w-350">
+		<ul class="nav w-100 pl-5" id="side-menu">
+			<li ui-sref-active="selected">
+				<a ui-sref="member.main">
+						<i class="fa-solid fa-bars"></i> &nbsp; Dashboard
+				</a>
+			</li>
+			<li ui-sref-active="selected">
+				<a ui-sref="member.loan-application">
+						<i class="fa-solid fa-layer-group"></i> &nbsp; Loan Application
+				</a>
+			</li>
+			<li ui-sref-active="selected">
+				<a ui-sref="member.deposit">
+						<i class="fa-solid fa-arrow-right-arrow-left"></i> &nbsp; Deposit
+				</a>
+			</li>
+			<li ui-sref-active="selected">
+				<a ui-sref="member.withdrawal">
+						<i class="fa-solid fa-server"></i> &nbsp; Withdrawal
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="sidenav-outside" ng-click="vm.hideSideBar()"></div>
+</div>

@@ -1,13 +1,14 @@
 <header class="toolbar">
 	<nav class="toolbar__navigation">
-		<div class="d-flex px-4 py-2 align-items-center justify-content-between mobile-navbar">
+		<div class="d-flex retain-row-136 px-4 py-2 align-items-center justify-content-between mobile-navbar">
 			<div ng-click="vm.openSideMenu()">
 				<img src="assets/images/coop-logo.png" alt="" class="sub-logo">
+				<i class="fa fa-bars sub-logo-menu"></i>
 			</div>
-			<ul class="nav navbar-top-links d-flex gap-20 align-items-center">
+			<ul class="nav navbar-top-links d-flex retain-row-136 gap-20 align-items-center">
 				<li ng-if="vm.profile.as === 'member'">
 					<a ui-sref="member.main" href="javascript:void(0);">
-						<div class="d-flex align-items-end">
+						<div class="d-flex retain-row-136 align-items-end">
 							<span class="text-black font-size-18 font-weight-bolder mobile-no-display mr-1">Home</span>
 							<i class="fa-solid fa-home font-size-28 text-black"></i>
 						</div>
@@ -15,7 +16,7 @@
 				</li>
 				<li ng-if="vm.profile.as === 'admin'">
 					<a ui-sref="app.main" href="javascript:void(0);">
-						<div class="d-flex align-items-end">
+						<div class="d-flex retain-row-136 align-items-end">
 							<span class="text-black font-size-18 font-weight-bolder mobile-no-display mr-1">Home</span>
 							<i class="fa-solid fa-home font-size-28 text-black"></i>
 						</div>
@@ -31,7 +32,7 @@
 				</li> -->
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);">
-						<div class="d-flex align-items-end">
+						<div class="d-flex retain-row-136 align-items-end">
 							<span class="text-black font-size-18 font-weight-bolder mobile-no-display mr-1">{{vm.profile.name}}</span>
 							<svg width="30" height="30" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<g clip-path="url(#clip0_19_20)">

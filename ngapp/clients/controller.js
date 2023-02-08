@@ -33,7 +33,7 @@ function ClientCtrl($scope, $ocLazyLoad, $injector, filter) {
 			{ name: 'Date Applied', field: 'date_registered', cellFilter: "date: 'MMM dd, yyyy'", width: 150 },
 			{ name: 'Date Verified', field: 'date_approved', cellFilter: "date: 'MMM dd, yyyy'", width: 150 },
 			{ name: '  ', cellTemplate: cellTemplate1, width: 20 },
-			{ name: ' ', cellTemplate: cellTemplate2, width: 20 },
+			// { name: ' ', cellTemplate: cellTemplate2, width: 20 },
 		],
 		data: 'vm.filtered',
 	};

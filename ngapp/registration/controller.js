@@ -51,7 +51,7 @@ function RegistrationCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
             return vm.captured = false;
         }
         let data = angular.copy(vm.variables);
-        data.account_no = '';
+        data.account_no = vm.variables.accountNo;
         data.purpose = 'register';
         data.image = vm.variables.image.replace(/^data:image\/[a-z]+;base64,/, "");
         AccountSvc.save(data).then(function(response) {

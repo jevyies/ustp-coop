@@ -7,45 +7,73 @@
             <h1 class="m-0 mr-2 text-secondary text-bolder"><b><span class="font-size-80">Join us </span><span class="font-size-120">now.</span></b></h1>
         </div>
         <div class="w-50 p-5">
-            <form ng-submit="vm.save()" name="myForm">
+            <form ng-submit="vm.save()" name="myForm" class="mb-50-136">
                 <div class="bg-brown p-3">
-                    <div class="mb-2">
+                    <div class="mb-2 d-flex align-items-center">
+                        <label for="name" class="text-nowrap">Account No:</label>
+                        <input 
+                            type="text" 
+                            name="name" 
+                            class="form-control form-control-lg ml-2" 
+                            required 
+                            ng-model="vm.variables.accountNo" 
+                        >
+                    </div>
+                    <div class="mb-2 d-flex align-items-center">
                         <label for="name">Name:</label>
-                        <div class="d-flex">
+                        <input 
+                            type="text" 
+                            name="name" 
+                            class="form-control form-control-lg ml-2" 
+                            required 
+                            ng-model="vm.variables.name" 
+                        >
+                        <!-- <div class="d-flex">
                             <span class="space-5"></span>
                             <input 
                                 type="text" 
                                 name="name" 
-                                class="form-control form-control-lg ml-5" 
+                                class="form-control form-control-lg ml-2" 
                                 required 
                                 ng-model="vm.variables.name" 
                             >
-                        </div>
+                        </div> -->
 
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-2 d-flex align-items-center">
                         <label for="name">Email:</label>
-                        <div class="d-flex">
+                        <input type="email" name="email" class="form-control form-control-lg ml-2" required ng-model="vm.variables.email">
+                        <!-- <div class="d-flex">
                             <span class="space-5"></span>
-                            <input type="email" name="email" class="form-control form-control-lg ml-5" required ng-model="vm.variables.email">
-                        </div>
+                            <input type="email" name="email" class="form-control form-control-lg ml-2" required ng-model="vm.variables.email">
+                        </div> -->
                     </div>
-                    <div class="mb-2">
+                    <div class="mb-2 d-flex align-items-center">
+                        <label for="name" class="text-nowrap">Mobile Number:</label>
+                        <input type="text" name="mobile" class="form-control form-control-lg ml-2" ng-model="vm.variables.mobile" only-numbers>
+                        <!-- <div class="d-flex">
+                            <span class="space-5"></span>
+                            <input type="email" name="email" class="form-control form-control-lg ml-2" required ng-model="vm.variables.email">
+                        </div> -->
+                    </div>
+                    <div class="mb-2 d-flex align-items-center">
                         <label for="name">Password:</label>
-                        <div class="d-flex">
+                        <input type="password" name="password" class="form-control form-control-lg ml-2" required ng-model="vm.variables.password">
+                        <!-- <div class="d-flex">
                             <span class="space-5"></span>
-                            <input type="password" name="password" class="form-control form-control-lg ml-5" required ng-model="vm.variables.password">
-                        </div>
+                            <input type="password" name="password" class="form-control form-control-lg ml-2" required ng-model="vm.variables.password">
+                        </div> -->
                     </div>
-                    <div class="mb-2">
-                        <label for="name">Confirm Password:</label>
-                        <div class="d-flex">
+                    <div class="mb-2 d-flex align-items-center">
+                        <label for="name" class="text-nowrap">Confirm Password:</label>
+                        <input type="password" name="confirmPassword" class="form-control form-control-lg ml-2" ng-class="{'border-danger': vm.submitted && vm.passwordNotMatch}" required ng-model="vm.variables.confirmPassword">
+                        <!-- <div class="d-flex">
                             <span class="space-5"></span>
-                            <input type="password" name="confirmPassword" class="form-control form-control-lg ml-5" ng-class="{'border-danger': vm.submitted && vm.passwordNotMatch}" required ng-model="vm.variables.confirmPassword">
-                        </div>
+                            <input type="password" name="confirmPassword" class="form-control form-control-lg ml-2" ng-class="{'border-danger': vm.submitted && vm.passwordNotMatch}" required ng-model="vm.variables.confirmPassword">
+                        </div> -->
                         <div class="d-flex" ng-if="vm.submitted && vm.passwordNotMatch">
                             <span class="space-5"></span>
-                            <small class="text-danger font-size-14 ml-5 font-weight-bolder" >Password not matched</small>
+                            <small class="text-danger font-size-14 ml-2 font-weight-bolder" >Password not matched</small>
                         </div>
                     </div>
                     <div class="mb-2 d-flex align-items-center">

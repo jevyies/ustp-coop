@@ -9,10 +9,28 @@ function WithdrawalCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
     vm.variables = {};
     var interValId = null;
     vm.successfulWithdrawal = false;
+    vm.accountBalance = 0;
+    vm.profile = JSON.parse(localStorage.getItem('credentials'));
     $ocLazyLoad.load([APPURL + 'app.service.js?v=' + VERSION]).then(function (d) {
         WithdrawSvc = $injector.get('WithdrawSvc');
+        AccountSvc = $injector.get('AccountSvc');
+        vm.dateNow = filter('date')(new Date(), 'mediumDate');
+        vm.getAccountBalance();
     });
+    vm.getAccountBalance = function(){
+        var account = JSON.parse(localStorage.getItem('credentials'));
+        vm.accountBalance = 0;
+		AccountSvc.get({purpose: 'get_balance', id: account.id}).then(function(response){
+			if(response){
+				vm.accountBalance = response.balance;
+                vm.balance = filter('currency')(vm.accountBalance, '₱ ');
+			}
+		});
+	}
     vm.openCamera = async function () {
+        if(parseFloat(AccountSvc.getAmount(vm.variables.totalAmt)) > parseFloat(vm.accountBalance)){
+            return WithdrawSvc.showAlert('Error', 'Insufficient balance', 'error');
+        }
         vm.cameraOpened = true;
         Promise.all([
             faceapi.nets.tinyFaceDetector.loadFromUri('assets/components/models'),

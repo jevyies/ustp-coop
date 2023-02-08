@@ -7,10 +7,23 @@ function DepositCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
     vm.attachment = '';
     vm.imageUrl = '';
     vm.successfulDeposit = false;
-
+    vm.accountBalance = 0;
     $ocLazyLoad.load([APPURL + 'app.service.js?v=' + VERSION]).then(function (d) {
         DepositSvc = $injector.get('DepositSvc');
+        AccountSvc = $injector.get('AccountSvc');
+        vm.getAccountBalance();
     });
+    
+	vm.getAccountBalance = function(){
+        var account = JSON.parse(localStorage.getItem('credentials'));
+        vm.accountBalance = 0;
+		AccountSvc.get({purpose: 'get_balance', id: account.id}).then(function(response){
+			if(response){
+				vm.accountBalance = response.balance;
+                vm.balance = filter('currency')(vm.accountBalance, '₱ ');
+			}
+		});
+	}
     vm.submit = function(){
         let account = JSON.parse(localStorage.getItem('credentials'));
         let data = angular.copy(vm.variables);

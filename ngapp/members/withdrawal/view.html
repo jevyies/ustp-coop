@@ -2,6 +2,7 @@
     <div class="bg-brownie full-main-mobile" style="height: 10px;"></div>
     <div class="bg-light px-3 py-2 mobile-full-width">
         <h2 class="font-weight-bolder mobile-text-center">USTP CDO Multi-Cooperative Web Portal</h2>
+        <p class="font-size-18 text-info">Current Balance: {{vm.balance}}</p>
         <p class="font-weight-bolder mt-3 font-size-20 mobile-text-center">Fill up the form</p>
         <div class="bg-blue py-5">
             <div class="d-flex align-items-center h-100">
@@ -11,6 +12,12 @@
                 <div class="w-60 p-3">
                     <form ng-submit="vm.openCamera()">
                         <div class="bg-brownie p-1">
+                            <div class="mb-3 mt-2">
+                                <label for="name">Account No: <span class="font-weight-bolder"><u><i>{{vm.profile.account_no }}</i></u></span></label>
+                            </div>
+                            <div class="mb-3 mt-2">
+                                <label for="name">Date: <span class="font-weight-bolder"><u><i>{{vm.dateNow }}</i></u></span></label>
+                            </div>
                             <div class="mb-3 mt-2">
                                 <label for="name">Total Amount:</label>
                                 <div class="d-flex">

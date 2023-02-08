@@ -7,6 +7,7 @@ function AppCtrl($scope, $ocLazyLoad, $injector, $state) {
 	vm.masterfile = false;
 	vm.userName = '';
 	vm.profile = JSON.parse(localStorage.getItem('credentials'));
+	vm.profile.image = vm.profile.image_path ? APIURL + vm.profile.image_path : 'assets/images/user.png';
 	$ocLazyLoad.load([APPURL + 'app.service.js?v=' + VERSION]).then(function(d) {
 		AccountSvc = $injector.get('AccountSvc');
 	});

@@ -58,6 +58,9 @@ function RegistrationCtrl($scope, $ocLazyLoad, $injector, $q, filter) {
             if(!response.data){
                 return AccountSvc.showAlert('Error', 'Error occured while saving data', 'error');
             }
+            if(response.data.email_exists){
+                return AccountSvc.showAlert('Error', 'Email already exists', 'error');
+            }
             vm.successfulRegistration = true;
         });
     }

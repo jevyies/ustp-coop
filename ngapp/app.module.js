@@ -48,30 +48,30 @@ angular
 					var body = angular.element(document.querySelector('body'));
 					body.removeClass('sidebar-mobile-show');
 				}
-				ROUTES.forEach(item => {
-					for(var key in item){
-						if(nextUrl === item[key].url){
-							if(item[key].requireLogin && !localStorage.getItem('credentials')) {
-								event.preventDefault();
-							}
-							if(!item[key].requireLogin && localStorage.getItem('credentials')) {
-								var credentials = JSON.parse(localStorage.getItem('credentials'));
-								if(credentials.as === 'admin'){
-									$state.go('app.main');
-								}else if(credentials.as === 'member'){
-									$state.go('member.main');
-								}
-								event.preventDefault();
-							}
-							if(item[key].requireLogin && localStorage.getItem('credentials')) {
-								var credentials = JSON.parse(localStorage.getItem('credentials'));
-								if(credentials.as !== item[key].loginAs){
-									event.preventDefault();
-								}
-							}
-						}
-					}
-				})
+				// ROUTES.forEach(item => {
+				// 	for(var key in item){
+				// 		if(nextUrl === item[key].url){
+				// 			if(item[key].requireLogin && !localStorage.getItem('credentials')) {
+				// 				event.preventDefault();
+				// 			}
+				// 			if(!item[key].requireLogin && localStorage.getItem('credentials')) {
+				// 				var credentials = JSON.parse(localStorage.getItem('credentials'));
+				// 				if(credentials.as === 'admin'){
+				// 					$state.go('app.main');
+				// 				}else if(credentials.as === 'member'){
+				// 					$state.go('member.main');
+				// 				}
+				// 				event.preventDefault();
+				// 			}
+				// 			if(item[key].requireLogin && localStorage.getItem('credentials')) {
+				// 				var credentials = JSON.parse(localStorage.getItem('credentials'));
+				// 				if(credentials.as !== item[key].loginAs){
+				// 					event.preventDefault();
+				// 				}
+				// 			}
+				// 		}
+				// 	}
+				// })
 				
 			})
 			$rootScope.$state = $state;

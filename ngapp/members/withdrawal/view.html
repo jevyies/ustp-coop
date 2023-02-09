@@ -21,6 +21,12 @@
                                 <input type="text" class="form-control form-control-lg" value="{{vm.dateNow}}" disabled>
                             </div>
                             <div class="mb-3 mt-2">
+                                <label for="name">GCash Number:</label>
+                                <div class="d-flex">
+                                    <input type="text" class="form-control form-control-lg" ng-model="vm.variables.gcash" maxlength="11" only-numbers required>
+                                </div>
+                            </div>
+                            <div class="mb-3 mt-2">
                                 <label for="name">Amount Withdraw:</label>
                                 <div class="d-flex">
                                     <input type="text" class="form-control form-control-lg" ng-model="vm.variables.totalAmt" only-numbers-wo-negative required>

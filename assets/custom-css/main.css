@@ -12,6 +12,9 @@ body {
     color: #000;
 }
 @media  screen and (max-width: 1366px) {  
+    input.ml-5{
+        margin-left: 0 !important;
+    }
     .about-us-img span{
         font-size: 18px !important;
     }

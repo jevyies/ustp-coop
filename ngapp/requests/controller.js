@@ -82,6 +82,7 @@ function RequestCtrl($scope, $ocLazyLoad, $injector, filter) {
 			{ name: 'Transaction Type', field: 'transaction_type'},
 			{ name: 'Amount', field: 'amount'},
 			{ name: 'Attachment', field: 'attachment', cellTemplate: cellTemplate2, width: 150},
+			{ name: 'gcash', field: 'gcash', displayName: 'GCash No.'},
 			{ name: 'Date Requested', field: 'date_requested', cellFilter: "date: 'MMM dd, yyyy'", width: 170},
             { name: 'Action', field: 'action', cellTemplate: cellTemplate1, width: 180 },
 		],

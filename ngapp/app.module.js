@@ -1,5 +1,6 @@
 // const APIURL = 'http://localhost:9000/';
-const APIURL = 'http://139.59.239.49:8000/';
+// const APIURL = 'http://139.59.239.49:8000/';
+const APIURL = 'https://ustpcoop-backend.online/';
 const APPURL = 'ngapp/';
 const VERSION = '1.0.0';
 const COMURL = APPURL + 'common/';

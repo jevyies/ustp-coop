@@ -1,0 +1,17 @@
+<div ng-controller="SettingsCtrl as vm">
+    <div class="bg-light w-100">
+        <div class="p-2">
+            <h2 class="font-weight-bolder">Welcome to USTP CDO Multi-Cooperative Web Portal</h2>
+            <h4 class="mb-0"><i>Settings</i></h4>
+        </div>
+    </div>
+    <div class="p-2">
+        <h1>Initial Balance</h1>
+        <form class="row" ng-submit="vm.save()">
+            <div class="col-md-3 text-center">
+                <input type="text" class="form-control form-control-lg text-right mb-2" only-numbers-wo-negative ng-model="vm.initialBalance">
+                <button class="btn btn-blue px-3"><i class="fa fa-save"></i> Save</button>
+            </div>
+        </form>
+    </div>
+</div>

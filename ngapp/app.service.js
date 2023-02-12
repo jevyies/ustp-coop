@@ -9,6 +9,7 @@
 		.factory('WithdrawSvc', WithdrawSvc)
 		.factory('TransactionSvc', TransactionSvc)
 		.factory('UploadSvc', UploadSvc)
+		.factory('SettingSvc', SettingSvc)
 
 	AccountSvc.$inject = ['baseService', '$uibModal', '$ocLazyLoad'];
 	AccountDetailSvc.$inject = ['baseService', '$uibModal', '$ocLazyLoad'];
@@ -16,6 +17,7 @@
 	WithdrawSvc.$inject = ['baseService', '$uibModal', '$ocLazyLoad'];
 	TransactionSvc.$inject = ['baseService', '$uibModal', '$ocLazyLoad'];
 	UploadSvc.$inject = ['baseService', '$uibModal', '$ocLazyLoad'];
+	SettingSvc.$inject = ['baseService', '$uibModal', '$ocLazyLoad'];
 
 	function AccountSvc(baseService, $uibModal, $ocLazyLoad) {
 		var service = new baseService();
@@ -45,6 +47,11 @@
 	function UploadSvc(baseService, $uibModal, $ocLazyLoad) {
 		var service = new baseService();
 		service.url = APIURL + 'upload/';
+		return service;
+	}
+	function SettingSvc(baseService, $uibModal, $ocLazyLoad) {
+		var service = new baseService();
+		service.url = APIURL + 'setting/';
 		return service;
 	}
 })();

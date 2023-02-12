@@ -160,6 +160,24 @@ const ROUTES = [
 		}
 	},
 	{
+		'app.settings': {
+			url: '/settings',
+			templateUrl: APPURL + 'settings/view.html?v=' + VERSION,
+			requireLogin: true,
+			loginAs: 'admin',
+			resolve: {
+				loadMyCtrl: [
+					'$ocLazyLoad',
+					function ($ocLazyLoad) {
+						return $ocLazyLoad.load({
+							files: [APPURL + 'settings/controller.js?v=' + VERSION],
+						});
+					},
+				],
+			},
+		}
+	},
+	{
 		'member': {
 			abstract: true,
 			templateUrl: COMURL + 'full-member.html?v=' + VERSION,

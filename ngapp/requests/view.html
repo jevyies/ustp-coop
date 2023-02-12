@@ -29,9 +29,12 @@
                 <button type="button" class="btn" ng-click="vm.queryDate()">Go</button>
             </div>
         </div>
-        <div ui-grid="vm.requestGrid" ui-grid-selection ui-grid-resize-columns class="position-relative">
+        <div ui-grid="vm.requestGrid" ui-grid-selection ui-grid-resize-columns ui-grid-exporter class="position-relative">
             <div class="ui-grid-center-panel" ng-show="vm.filtered.length == 0 && !vm.loading">No data found</div>
             <div class="ui-grid-center-panel" ng-show="vm.loading">Loading...</div>
+        </div>
+        <div class="text-right mt-2" ng-show="vm.filtered.length > 0">
+            <button type="button" class="btn btn-primary" ng-click="vm.exportPDF()"><i class="fa-solid fa-file-pdf"></i> Export to PDF</button>
         </div>
     </div>
 </div>

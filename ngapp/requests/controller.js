@@ -26,6 +26,7 @@ function RequestCtrl($scope, $ocLazyLoad, $injector, filter) {
 				item.amount = filter('currency')(item.total_amount, '₱ ');
 				item.attachment = APIURL + item.image_path_passed;
 				item.searchList = item.account__account_no + ' ' + item.account__name;
+				item.requested = filter('date')(new Date(TransactionSvc.getDate(item.date_requested)), 'MMM dd, yyyy');
 			});
 			vm.requestList = d;
 			vm.filtered = vm.requestList;
@@ -81,13 +82,22 @@ function RequestCtrl($scope, $ocLazyLoad, $injector, filter) {
 			{ name: 'Name', field: 'account__name'},
 			{ name: 'Transaction Type', field: 'transaction_type'},
 			{ name: 'Amount', field: 'amount'},
-			{ name: 'Attachment', field: 'attachment', cellTemplate: cellTemplate2, width: 150},
+			{ name: 'Attachment', field: 'attachment', cellTemplate: cellTemplate2, width: 150, enableHiding: true, exporterSuppressExport: true, },
 			{ name: 'gcash', field: 'gcash', displayName: 'GCash No.'},
-			{ name: 'Date Requested', field: 'date_requested', cellFilter: "date: 'MMM dd, yyyy'", width: 170},
-            { name: 'Action', field: 'action', cellTemplate: cellTemplate1, width: 180 },
+			{ name: 'Date Requested', field: 'requested', width: 170},
+            { name: 'Action', field: 'action', cellTemplate: cellTemplate1, width: 180, enableHiding: true, exporterSuppressExport: true, },
 		],
-		data: 'vm.filtered'
+		data: 'vm.filtered',
+		exporterMenuCsv: false,
+        exporterMenuExcel: false,
+        exporterMenuPdf: true,
+		onRegisterApi: function (gridApi) {
+            vm.gridApi = gridApi;
+        }
 	};
+	vm.exportPDF = function () {
+        vm.gridApi.exporter.pdfExport('visible', 'visible', 'all');
+    }
 	vm.approveRequest = function(row) {
 		AccountSvc.confirmation('Are You Sure?', `You want to approve this request?`, 'Yes', 'No', true).then(function (response) {
 			if (response) {

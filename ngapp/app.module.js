@@ -25,6 +25,7 @@ angular
         'ui.grid.cellNav',
         'ui.grid.selection',
         'ui.grid.resizeColumns',
+		'ui.grid.exporter',
 	])
 	.config([
 		'cfpLoadingBarProvider',
